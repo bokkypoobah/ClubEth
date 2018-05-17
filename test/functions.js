@@ -470,8 +470,8 @@ function getClubAndTokenListing() {
     i = 0;
     clubListingEvents.watch(function (error, result) {
       console.log("RESULT: get ClubListing " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
-      clubs.push(result.args.club);
-      tokens.push(result.args.token);
+      clubs.push(result.args.clubAddress);
+      tokens.push(result.args.tokenAddress);
     });
     clubListingEvents.stopWatching();
   }

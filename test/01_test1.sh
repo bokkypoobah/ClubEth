@@ -24,12 +24,11 @@ JSONSUMMARY=`grep ^JSONSUMMARY= settings.txt | sed "s/^.*=//"`
 JSONEVENTS=`grep ^JSONEVENTS= settings.txt | sed "s/^.*=//"`
 
 CURRENTTIME=`date +%s`
-CURRENTTIMES=`date -r $CURRENTTIME -u`
-
+CURRENTTIMES=`perl -le "print scalar localtime $CURRENTTIME"`
 START_DATE=`echo "$CURRENTTIME+45" | bc`
-START_DATE_S=`date -r $START_DATE -u`
+START_DATE_S=`perl -le "print scalar localtime $START_DATE"`
 END_DATE=`echo "$CURRENTTIME+60*2" | bc`
-END_DATE_S=`date -r $END_DATE -u`
+END_DATE_S=`perl -le "print scalar localtime $END_DATE"`
 
 printf "MODE               = '$MODE'\n" | tee $TEST1OUTPUT
 printf "GETHATTACHPOINT    = '$GETHATTACHPOINT'\n" | tee -a $TEST1OUTPUT

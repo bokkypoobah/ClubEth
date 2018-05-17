@@ -516,8 +516,8 @@ contract ClubFactory is Owned {
     Club[] public deployedClubs;
     ClubToken[] public deployedTokens;
 
-    event ClubListing(address indexed club, string clubName,
-        address indexed token, string tokenSymbol, string tokenName, uint8 tokenDecimals,
+    event ClubListing(address indexed clubAddress, string clubName,
+        address indexed tokenAddress, string tokenSymbol, string tokenName, uint8 tokenDecimals,
         address indexed memberName, uint tokensForNewMembers);
 
     function verify(address addr) public view returns (bool valid) {
