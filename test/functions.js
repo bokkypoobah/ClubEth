@@ -11,9 +11,9 @@ var accountNames = {};
 addAccount(eth.accounts[0], "Account #0 - Miner");
 addAccount(eth.accounts[1], "Account #1 - Contract Owner");
 addAccount(eth.accounts[2], "Account #2 - Alice");
-addAccount(eth.accounts[3], "Account #3");
-addAccount(eth.accounts[4], "Account #4");
-addAccount(eth.accounts[5], "Account #5");
+addAccount(eth.accounts[3], "Account #3 - Bob");
+addAccount(eth.accounts[4], "Account #4 - Carol");
+addAccount(eth.accounts[5], "Account #5 - Dave");
 addAccount(eth.accounts[6], "Account #6");
 addAccount(eth.accounts[7], "Account #7");
 addAccount(eth.accounts[8], "Account #8");
@@ -24,9 +24,9 @@ addAccount(eth.accounts[11], "Account #11");
 var minerAccount = eth.accounts[0];
 var contractOwnerAccount = eth.accounts[1];
 var aliceAccount = eth.accounts[2];
-var account3 = eth.accounts[3];
-var account4 = eth.accounts[4];
-var account5 = eth.accounts[5];
+var bobAccount = eth.accounts[3];
+var carolAccount = eth.accounts[4];
+var daveAccount = eth.accounts[5];
 var account6 = eth.accounts[6];
 var account7 = eth.accounts[7];
 var account8 = eth.accounts[8];
@@ -343,7 +343,6 @@ function printClubContractDetails() {
       // console.log("RESULT: club.member[" + i + "]=" + member + " " + JSON.stringify(data));
       console.log("RESULT: club.member[" + i + "]=" + member + " [" + data[0] + ", " + data[1] + ", '" + data[2] + "']");
     }
-    /*
     console.log("RESULT: club.numberOfProposals=" + contract.numberOfProposals());
     for (i = 0; i < contract.numberOfProposals(); i++) {
       var proposalData1 = contract.getProposalData1(i);
@@ -351,7 +350,6 @@ function printClubContractDetails() {
       var proposalData3 = contract.getProposalData3(i);
       console.log("RESULT: club.getProposal[" + i + "]=" + JSON.stringify(proposalData1) + " " + JSON.stringify(proposalData2) + " " + JSON.stringify(proposalData3));
     }
-    */
     console.log("RESULT: club.quorum=" + contract.quorum() + "%");
     console.log("RESULT: club.quorumDecayPerWeek=" + contract.quorumDecayPerWeek() + "%");
     console.log("RESULT: club.requiredMajority=" + contract.requiredMajority() + "%");
@@ -363,6 +361,33 @@ function printClubContractDetails() {
     }
 
     var latestBlock = eth.blockNumber;
+
+    var newProposalEvents = contract.NewProposal({}, { fromBlock: clubFromBlock, toBlock: latestBlock });
+    i = 0;
+    newProposalEvents.watch(function (error, result) {
+      console.log("RESULT: NewProposal " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
+      var proposalData1 = contract.getProposalData1(result.args.proposalId);
+      var proposalData2 = contract.getProposalData2(result.args.proposalId);
+      var proposalData3 = contract.getProposalData3(result.args.proposalId);
+      console.log("RESULT: - proposalData1=" + JSON.stringify(proposalData1));
+      console.log("RESULT: - proposalData2=" + JSON.stringify(proposalData2));
+      console.log("RESULT: - proposalData3=" + JSON.stringify(proposalData3));
+    });
+    newProposalEvents.stopWatching();
+
+    var votedEvents = contract.Voted({}, { fromBlock: clubFromBlock, toBlock: latestBlock });
+    i = 0;
+    votedEvents.watch(function (error, result) {
+      console.log("RESULT: Voted " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
+    });
+    votedEvents.stopWatching();
+
+    var voteResultEvents = contract.VoteResult({}, { fromBlock: clubFromBlock, toBlock: latestBlock });
+    i = 0;
+    voteResultEvents.watch(function (error, result) {
+      console.log("RESULT: VoteResult " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
+    });
+    voteResultEvents.stopWatching();
 
     var memberAddedEvents = contract.MemberAdded({}, { fromBlock: clubFromBlock, toBlock: latestBlock });
     i = 0;
@@ -405,20 +430,6 @@ function printClubContractDetails() {
       console.log("RESULT: EtherDeposited " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
     });
     etherDepositedEvents.stopWatching();
-
-    var newProposalEvents = contract.NewProposal({}, { fromBlock: clubFromBlock, toBlock: latestBlock });
-    i = 0;
-    newProposalEvents.watch(function (error, result) {
-      console.log("RESULT: NewProposal " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
-    });
-    newProposalEvents.stopWatching();
-
-    var votedEvents = contract.Voted({}, { fromBlock: clubFromBlock, toBlock: latestBlock });
-    i = 0;
-    votedEvents.watch(function (error, result) {
-      console.log("RESULT: Voted " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
-    });
-    votedEvents.stopWatching();
 
     var etherPaidEvents = contract.EtherPaid({}, { fromBlock: clubFromBlock, toBlock: latestBlock });
     i = 0;

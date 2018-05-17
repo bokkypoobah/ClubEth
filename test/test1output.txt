@@ -10,9 +10,9 @@ TEST1OUTPUT        = 'test1output.txt'
 TEST1RESULTS       = 'test1results.txt'
 JSONSUMMARY        = 'Summary.json'
 JSONEVENTS         = 'Events.json'
-CURRENTTIME        = '1526551839' 'Thu 17 May 2018 10:10:39 UTC'
-START_DATE         = '1526551884' 'Thu 17 May 2018 10:11:24 UTC'
-END_DATE           = '1526551959' 'Thu 17 May 2018 10:12:39 UTC'
+CURRENTTIME        = '1526577497' 'Thu 17 May 2018 17:18:17 UTC'
+START_DATE         = '1526577542' 'Thu 17 May 2018 17:19:02 UTC'
+END_DATE           = '1526577617' 'Thu 17 May 2018 17:20:17 UTC'
 --- Differences ../contracts/ClubFactory.sol ClubFactory.sol ---
 
 solc, the solidity compiler commandline interface
@@ -21,7 +21,7 @@ Welcome to the Geth JavaScript console!
 
 instance: Geth/v1.8.6-stable-12683fec/darwin-amd64/go1.10
 coinbase: 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e
-at block: 35385 (Thu, 17 May 2018 20:10:40 AEST)
+at block: 2127 (Fri, 18 May 2018 03:18:18 AEST)
  datadir: /Users/bok/Projects/ClubEth/test/testchain
  modules: admin:1.0 clique:1.0 debug:1.0 eth:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 shh:1.0 txpool:1.0 web3:1.0
 
@@ -69,9 +69,9 @@ RESULT: -- ------------------------------------------ --------------------------
 RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.000000000000000000           0.000000000000000000 Account #0 - Miner
 RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433        0.000000000000000000           0.000000000000000000 Account #1 - Contract Owner
 RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Alice
-RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3
-RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4
-RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5
+RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Bob
+RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Carol
+RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5 - Dave
 RESULT:  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
 RESULT:  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
 RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
@@ -125,22 +125,22 @@ undefined
 ... 
 undefined
 > 
-DATA: membersLibAddress=0x171367f4d427567dab0dc38133c5dc3aad7001a7
+DATA: membersLibAddress=0xb797d2439cd318684f93de852b4928ea75ae6917
 RESULT:  # Account                                             EtherBalanceChange                          Token Name
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.003665196000000000           0.000000000000000000 Account #0 - Miner
 RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.003665196000000000           0.000000000000000000 Account #1 - Contract Owner
 RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Alice
-RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3
-RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4
-RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5
+RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Bob
+RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Carol
+RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5 - Dave
 RESULT:  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
 RESULT:  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
 RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
 RESULT:  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
 RESULT: 10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #10
 RESULT: 11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11
-RESULT: 12 0x171367f4d427567dab0dc38133c5dc3aad7001a7        0.000000000000000000           0.000000000000000000 Members Library
+RESULT: 12 0xb797d2439cd318684f93de852b4928ea75ae6917        0.000000000000000000           0.000000000000000000 Members Library
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 RESULT:                                                                                     0.000000000000000000 Total Token Balances
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
@@ -150,9 +150,7 @@ undefined
 RESULT: PASS Deploy Members Library
 1
 > 
-RESULT: membersLibTx status=0x1 Success gas=6000000 gasUsed=610866 costETH=0.003665196 costUSD=2.53902787704 @ ETH/USD=692.74 gasPrice=6 gwei block=35394 txIx=0 txId=0x0454e7417bdbedec8e9829b619347932b501ec108f562ec0ccc7db69c4151863 @ 1526551849 Thu, 17 May 2018 10:10:49 UTC
-undefined
-> 
+RESULT: membersLibTx status=0x1 Success gas=6000000 gasUsed=610866 costETH=0.003665196 costUSD=2.53902787704 @ ETH/USD=692.74 gasPrice=6 gwei block=2142 txIx=0 txId=0x8bee3e194cf8551fc42191f11464b6512dc92d6f6897b9551dc3fcbc98b3aac9 @ 1526577513 Thu, 17 May 2018 17:18:33 UTC
 undefined
 > 
 RESULT: 
@@ -203,23 +201,23 @@ undefined
 ... 
 undefined
 > 
-DATA: clubFactoryAddress=0x5c2c5ed58c3a9ff568473c02ca6ec0d17cdea87b
+DATA: clubFactoryAddress=0x9fb3c6433aa45e3eb6df7d4f1ed943a8138a4923
 RESULT:  # Account                                             EtherBalanceChange                          Token Name
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.025999092000000000           0.000000000000000000 Account #0 - Miner
-RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.025999092000000000           0.000000000000000000 Account #1 - Contract Owner
+RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.029412348000000000           0.000000000000000000 Account #0 - Miner
+RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.029412348000000000           0.000000000000000000 Account #1 - Contract Owner
 RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Alice
-RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3
-RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4
-RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5
+RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Bob
+RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Carol
+RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5 - Dave
 RESULT:  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
 RESULT:  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
 RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
 RESULT:  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
 RESULT: 10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #10
 RESULT: 11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11
-RESULT: 12 0x171367f4d427567dab0dc38133c5dc3aad7001a7        0.000000000000000000           0.000000000000000000 Members Library
-RESULT: 13 0x5c2c5ed58c3a9ff568473c02ca6ec0d17cdea87b        0.000000000000000000           0.000000000000000000 ClubFactory
+RESULT: 12 0xb797d2439cd318684f93de852b4928ea75ae6917        0.000000000000000000           0.000000000000000000 Members Library
+RESULT: 13 0x9fb3c6433aa45e3eb6df7d4f1ed943a8138a4923        0.000000000000000000           0.000000000000000000 ClubFactory
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 RESULT:                                                                                     0.000000000000000000 Total Token Balances
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
@@ -229,10 +227,10 @@ undefined
 RESULT: PASS Deploy ClubFactory
 1
 > 
-RESULT: clubFactoryTx status=0x1 Success gas=6000000 gasUsed=3722316 costETH=0.022333896 costUSD=15.47158311504 @ ETH/USD=692.74 gasPrice=6 gwei block=35396 txIx=0 txId=0x0b0b74ca2e3540ea4884cab19c2335692584c40bc71247941ba8a736fc4269e6 @ 1526551851 Thu, 17 May 2018 10:10:51 UTC
+RESULT: clubFactoryTx status=0x1 Success gas=6000000 gasUsed=4291192 costETH=0.025747152 costUSD=17.83608207648 @ ETH/USD=692.74 gasPrice=6 gwei block=2144 txIx=0 txId=0x8dc864794649da16f7e43ebbbffbfff9b71cd3f2998ed8671d8d04706ff03620 @ 1526577515 Thu, 17 May 2018 17:18:35 UTC
 undefined
 > 
-RESULT: clubFactoryContractAddress=0x5c2c5ed58c3a9ff568473c02ca6ec0d17cdea87b
+RESULT: clubFactoryContractAddress=0x9fb3c6433aa45e3eb6df7d4f1ed943a8138a4923
 RESULT: clubFactory.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 RESULT: clubFactory.newOwner=0x0000000000000000000000000000000000000000
 undefined
@@ -265,12 +263,10 @@ undefined
 > 
 undefined
 > 
-{"abi":[{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"initialised","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"quorum","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"proposalId","type":"uint256"}],"name":"voteNo","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"proposalId","type":"uint256"}],"name":"getProposalData2","outputs":[{"name":"_address1","type":"address"},{"name":"_address2","type":"address"},{"name":"_recipient","type":"address"},{"name":"_tokenContract","type":"address"},{"name":"_amount","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_address","type":"address"}],"name":"getMemberData","outputs":[{"name":"_exists","type":"bool"},{"name":"_index","type":"uint256"},{"name":"_name","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"requiredMajority","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"TOKEN_DECIMALS","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"proposalId","type":"uint256"}],"name":"voteYes","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"proposalTime","type":"uint256"},{"name":"currentTime","type":"uint256"}],"name":"getQuorum","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"description","type":"string"},{"name":"_recipient","type":"address"},{"name":"_amount","type":"uint256"}],"name":"proposeEtherPayment","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"numberOfProposals","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"quorumDecayPerWeek","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getMembers","outputs":[{"name":"","type":"address[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"numberOfMembers","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"tokensForNewMembers","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"proposalId","type":"uint256"}],"name":"getProposalData1","outputs":[{"name":"_proposalType","type":"uint256"},{"name":"_proposer","type":"address"},{"name":"_description","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"memberName","type":"string"}],"name":"setMemberName","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_index","type":"uint256"}],"name":"getMemberByIndex","outputs":[{"name":"_member","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"proposalId","type":"uint256"},{"name":"yesNo","type":"bool"}],"name":"vote","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_memberAddr","type":"address"},{"name":"_memberName","type":"string"}],"name":"init","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"TOKEN_DECIMALSFACTOR","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"token","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"proposalId","type":"uint256"}],"name":"getProposalData3","outputs":[{"name":"_memberVotedNo","type":"uint256"},{"name":"_memberVotedYes","type":"uint256"},{"name":"_executor","type":"address"},{"name":"_open","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"_name","type":"string"},{"name":"_token","type":"address"},{"name":"_tokensForNewMembers","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"payable":true,"stateMutability":"payable","type":"fallback"},{"anonymous":false,"inputs":[{"indexed":true,"name":"memberAddress","type":"address"},{"indexed":false,"name":"name","type":"string"},{"indexed":false,"name":"totalAfter","type":"uint256"}],"name":"MemberAdded","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"memberAddress","type":"address"},{"indexed":false,"name":"name","type":"string"},{"indexed":false,"name":"totalAfter","type":"uint256"}],"name":"MemberRemoved","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"memberAddress","type":"address"},{"indexed":false,"name":"oldName","type":"string"},{"indexed":false,"name":"newName","type":"string"}],"name":"MemberNameUpdated","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"oldToken","type":"address"},{"indexed":true,"name":"newToken","type":"address"}],"name":"TokenUpdated","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"oldTokens","type":"uint256"},{"indexed":false,"name":"newTokens","type":"uint256"}],"name":"TokensForNewMembersUpdated","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"sender","type":"address"},{"indexed":false,"name":"amount","type":"uint256"}],"name":"EtherDeposited","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"proposalId","type":"uint256"},{"indexed":true,"name":"proposalType","type":"uint8"},{"indexed":true,"name":"proposer","type":"address"},{"indexed":false,"name":"recipient","type":"address"},{"indexed":false,"name":"tokenContract","type":"address"},{"indexed":false,"name":"amount","type":"uint256"}],"name":"NewProposal","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"proposalId","type":"uint256"},{"indexed":true,"name":"voter","type":"address"},{"indexed":false,"name":"vote","type":"bool"},{"indexed":false,"name":"memberVotedYes","type":"uint256"},{"indexed":false,"name":"memberVotedNo","type":"uint256"}],"name":"Voted","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"proposalId","type":"uint256"},{"indexed":true,"name":"sender","type":"address"},{"indexed":true,"name":"recipient","type":"address"},{"indexed":false,"name":"amount","type":"uint256"}],"name":"EtherPaid","type":"event"}],"eth":{"_requestManager":{"polls":{},"provider":{},"timeout":null},"accounts":["0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e","0xa11aae29840fbb5c86e6fd4cf809eba183aef433","0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0","0xa44a08d3f6933c69212114bb66e2df1813651844","0xa55a151eb00fded1634d27d1127b4be4627079ea","0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9","0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec","0xa88a05d2b88283ce84c8325760b72a64591279a2","0xa99a0ae3354c06b1459fd441a32a3f71005d7da0","0xaaaa9de1e6c564446ebca0fd102d8bd92093c756","0xabba43e7594e3b76afb157989e93c6621497fd4b","0xacca534c9f62ab495bd986e002ddf0f054caae4f","0xadda9b762a00ff12711113bfdc36958b73d7f915","0xaeea63b5479b50f79583ec49dacdcf86ddeff392","0xaffa4d3a80add8ce4018540e056dacb649589394","0xb00bfde102270687324f9205b693859df64f8923","0xb11be1d4ef8e94d01cb2695092a79d139a8dad98","0xb22be2d9eef0d7e260cf96a64feea0b95ed3e74f","0xb33b7ecf5e47be3981c74d989d3af8b665b4b649","0xb44b43d59b738b088b690ae276c1e979aba8268d","0xb55b57d113b45481e31aaf03d6f4e5ad4ef325f8","0xb66bcb4e473de80e2c8a47ced10c22c705a5e602","0xb77bbbaa7c1649547ae61de4b80b91568c28351a","0xb88b728490b417e29b0784db30535db343830dba","0xb99b3d1f72edb05a0321db58eddcf83fd73c4ade","0xbaab56da883edbe5314b8005be410022c510ccae","0xbbbb9809de0456ce0e0cd660e6e4ceabef3f521c","0xbccb68dd0ac87ef290aef49870d155f076c87868","0xbddb726ee06906e104db210e6d0506f2b062e477","0xbeeb24ff18203658d0a1d4682ee3f36ad663ec87","0xbffbd8f029ef0bd81cf754b53e8b3a5684f8b3ff"],"blockNumber":35396,"coinbase":"0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e","compile":{},"gasPrice":"6000000000","hashrate":0,"mining":true,"pendingTransactions":[],"protocolVersion":"0x3f","syncing":false}}
 undefined
 > 
 undefined
 > 
-{"abi":[{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"spender","type":"address"},{"name":"tokens","type":"uint256"}],"name":"approve","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"from","type":"address"},{"name":"to","type":"address"},{"name":"tokens","type":"uint256"}],"name":"transferFrom","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"addr","type":"address"},{"name":"tokens","type":"uint256"}],"name":"mint","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"tokenOwner","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"acceptOwnership","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_newOwner","type":"address"}],"name":"transferOwnershipImmediately","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"to","type":"address"},{"name":"tokens","type":"uint256"}],"name":"transfer","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"spender","type":"address"},{"name":"tokens","type":"uint256"},{"name":"data","type":"bytes"}],"name":"approveAndCall","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"newOwner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"tokenAddress","type":"address"},{"name":"tokens","type":"uint256"}],"name":"transferAnyERC20Token","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"tokenOwner","type":"address"},{"name":"spender","type":"address"}],"name":"allowance","outputs":[{"name":"remaining","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[{"name":"symbol","type":"string"},{"name":"name","type":"string"},{"name":"decimals","type":"uint8"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"payable":true,"stateMutability":"payable","type":"fallback"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_from","type":"address"},{"indexed":true,"name":"_to","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"tokens","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"tokenOwner","type":"address"},{"indexed":true,"name":"spender","type":"address"},{"indexed":false,"name":"tokens","type":"uint256"}],"name":"Approval","type":"event"}],"eth":{"_requestManager":{"polls":{},"provider":{},"timeout":null},"accounts":["0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e","0xa11aae29840fbb5c86e6fd4cf809eba183aef433","0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0","0xa44a08d3f6933c69212114bb66e2df1813651844","0xa55a151eb00fded1634d27d1127b4be4627079ea","0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9","0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec","0xa88a05d2b88283ce84c8325760b72a64591279a2","0xa99a0ae3354c06b1459fd441a32a3f71005d7da0","0xaaaa9de1e6c564446ebca0fd102d8bd92093c756","0xabba43e7594e3b76afb157989e93c6621497fd4b","0xacca534c9f62ab495bd986e002ddf0f054caae4f","0xadda9b762a00ff12711113bfdc36958b73d7f915","0xaeea63b5479b50f79583ec49dacdcf86ddeff392","0xaffa4d3a80add8ce4018540e056dacb649589394","0xb00bfde102270687324f9205b693859df64f8923","0xb11be1d4ef8e94d01cb2695092a79d139a8dad98","0xb22be2d9eef0d7e260cf96a64feea0b95ed3e74f","0xb33b7ecf5e47be3981c74d989d3af8b665b4b649","0xb44b43d59b738b088b690ae276c1e979aba8268d","0xb55b57d113b45481e31aaf03d6f4e5ad4ef325f8","0xb66bcb4e473de80e2c8a47ced10c22c705a5e602","0xb77bbbaa7c1649547ae61de4b80b91568c28351a","0xb88b728490b417e29b0784db30535db343830dba","0xb99b3d1f72edb05a0321db58eddcf83fd73c4ade","0xbaab56da883edbe5314b8005be410022c510ccae","0xbbbb9809de0456ce0e0cd660e6e4ceabef3f521c","0xbccb68dd0ac87ef290aef49870d155f076c87868","0xbddb726ee06906e104db210e6d0506f2b062e477","0xbeeb24ff18203658d0a1d4682ee3f36ad663ec87","0xbffbd8f029ef0bd81cf754b53e8b3a5684f8b3ff"],"blockNumber":35396,"coinbase":"0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e","compile":{},"gasPrice":"6000000000","hashrate":0,"mining":true,"pendingTransactions":[],"protocolVersion":"0x3f","syncing":false}}
 undefined
 > 
 undefined
@@ -278,34 +274,34 @@ undefined
 ... 
 undefined
 > 
-RESULT: clubFactoryContractAddress=0x5c2c5ed58c3a9ff568473c02ca6ec0d17cdea87b
-RESULT: get ClubListing 0 #35398 {"club":"0x2304b8c8375249c482b1f560fc8ffe2420ef2c2e","clubName":"Babysitters Club","memberName":"0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","token":"0xa523cbb90a5124415c167f7a8cea59e9cb9eba92","tokenDecimals":"18","tokenName":"Sit Minutes","tokenSymbol":"SITS","tokensForNewMembers":"1.2e+22"}
+RESULT: clubFactoryContractAddress=0x9fb3c6433aa45e3eb6df7d4f1ed943a8138a4923
+RESULT: get ClubListing 0 #2146 {"club":"0x4a8591f2ae0da15e0ed6a24786c6bb84e39f9679","clubName":"Babysitters Club","memberName":"0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","token":"0x283df2a66598c65acfb7b326916376c938c50ddf","tokenDecimals":"18","tokenName":"Sit Minutes","tokenSymbol":"SITS","tokensForNewMembers":"1.2e+22"}
 undefined
 > 
 undefined
 > 
 undefined
 > 
-RESULT: clubs=#1 ["0x2304b8c8375249c482b1f560fc8ffe2420ef2c2e"]
+RESULT: clubs=#1 ["0x4a8591f2ae0da15e0ed6a24786c6bb84e39f9679"]
 undefined
 > 
-RESULT: tokens=#1 ["0xa523cbb90a5124415c167f7a8cea59e9cb9eba92"]
-undefined
-> 
-undefined
-> 
+RESULT: tokens=#1 ["0x283df2a66598c65acfb7b326916376c938c50ddf"]
 undefined
 > 
 undefined
 > 
 undefined
 > 
-DATA: clubAddress=0x2304b8c8375249c482b1f560fc8ffe2420ef2c2e
 undefined
 > 
 undefined
 > 
-DATA: tokenAddress=0xa523cbb90a5124415c167f7a8cea59e9cb9eba92
+DATA: clubAddress=0x4a8591f2ae0da15e0ed6a24786c6bb84e39f9679
+undefined
+> 
+undefined
+> 
+DATA: tokenAddress=0x283df2a66598c65acfb7b326916376c938c50ddf
 undefined
 > 
 undefined
@@ -318,22 +314,22 @@ undefined
 > 
 RESULT:  # Account                                             EtherBalanceChange                          Token Name
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.041684436000000000           0.000000000000000000 Account #0 - Miner
-RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.025999092000000000           0.000000000000000000 Account #1 - Contract Owner
-RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976       -0.015685344000000000       12000.000000000000000000 Account #2 - Alice
-RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3
-RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4
-RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5
+RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.047686248000000000           0.000000000000000000 Account #0 - Miner
+RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.029412348000000000           0.000000000000000000 Account #1 - Contract Owner
+RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976       -0.018273900000000000       12000.000000000000000000 Account #2 - Alice
+RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Bob
+RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Carol
+RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5 - Dave
 RESULT:  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
 RESULT:  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
 RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
 RESULT:  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
 RESULT: 10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #10
 RESULT: 11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11
-RESULT: 12 0x171367f4d427567dab0dc38133c5dc3aad7001a7        0.000000000000000000           0.000000000000000000 Members Library
-RESULT: 13 0x5c2c5ed58c3a9ff568473c02ca6ec0d17cdea87b        0.000000000000000000           0.000000000000000000 ClubFactory
-RESULT: 14 0xa523cbb90a5124415c167f7a8cea59e9cb9eba92        0.000000000000000000           0.000000000000000000 Token 'SITS' 'Sit Minutes'
-RESULT: 15 0x2304b8c8375249c482b1f560fc8ffe2420ef2c2e        0.000000000000000000           0.000000000000000000 Club 'Babysitters Club'
+RESULT: 12 0xb797d2439cd318684f93de852b4928ea75ae6917        0.000000000000000000           0.000000000000000000 Members Library
+RESULT: 13 0x9fb3c6433aa45e3eb6df7d4f1ed943a8138a4923        0.000000000000000000           0.000000000000000000 ClubFactory
+RESULT: 14 0x283df2a66598c65acfb7b326916376c938c50ddf        0.000000000000000000           0.000000000000000000 Token 'SITS' 'Sit Minutes'
+RESULT: 15 0x4a8591f2ae0da15e0ed6a24786c6bb84e39f9679        0.000000000000000000           0.000000000000000000 Club 'Babysitters Club'
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 RESULT:                                                                                 12000.000000000000000000 Total Token Balances
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
@@ -343,31 +339,32 @@ undefined
 RESULT: PASS Deploy Club Contract
 1
 > 
-RESULT: deployClubTx status=0x1 Success gas=4000000 gasUsed=2614224 costETH=0.015685344 costUSD=10.86586520256 @ ETH/USD=692.74 gasPrice=6 gwei block=35398 txIx=0 txId=0xba8136902d7e1ad0c679ba3ca1df810f12c1e8dcf0077b7cd19145c9fa9e8124 @ 1526551853 Thu, 17 May 2018 10:10:53 UTC
+RESULT: deployClubTx status=0x1 Success gas=4000000 gasUsed=3045650 costETH=0.0182739 costUSD=12.659061486 @ ETH/USD=692.74 gasPrice=6 gwei block=2146 txIx=0 txId=0x70946ab20962ad59bbec3ca2af5ee1b4240c2570d72c6d7e1cbdbec7123d7e87 @ 1526577517 Thu, 17 May 2018 17:18:37 UTC
 undefined
 > 
-RESULT: clubFactoryContractAddress=0x5c2c5ed58c3a9ff568473c02ca6ec0d17cdea87b
+RESULT: clubFactoryContractAddress=0x9fb3c6433aa45e3eb6df7d4f1ed943a8138a4923
 RESULT: clubFactory.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 RESULT: clubFactory.newOwner=0x0000000000000000000000000000000000000000
-RESULT: ClubListing 0 #35398 {"club":"0x2304b8c8375249c482b1f560fc8ffe2420ef2c2e","clubName":"Babysitters Club","memberName":"0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","token":"0xa523cbb90a5124415c167f7a8cea59e9cb9eba92","tokenDecimals":"18","tokenName":"Sit Minutes","tokenSymbol":"SITS","tokensForNewMembers":"1.2e+22"}
+RESULT: ClubListing 0 #2146 {"club":"0x4a8591f2ae0da15e0ed6a24786c6bb84e39f9679","clubName":"Babysitters Club","memberName":"0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","token":"0x283df2a66598c65acfb7b326916376c938c50ddf","tokenDecimals":"18","tokenName":"Sit Minutes","tokenSymbol":"SITS","tokensForNewMembers":"1.2e+22"}
 undefined
 > 
-RESULT: tokenContractAddress=0xa523cbb90a5124415c167f7a8cea59e9cb9eba92
-RESULT: token.owner=0x2304b8c8375249c482b1f560fc8ffe2420ef2c2e
+RESULT: tokenContractAddress=0x283df2a66598c65acfb7b326916376c938c50ddf
+RESULT: token.owner=0x4a8591f2ae0da15e0ed6a24786c6bb84e39f9679
 RESULT: token.newOwner=0x0000000000000000000000000000000000000000
 RESULT: token.symbol=SITS
 RESULT: token.name=Sit Minutes
 RESULT: token.decimals=18
 RESULT: token.totalSupply=12000
-RESULT: Transfer 0 #35398: from=0x0000000000000000000000000000000000000000 to=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976 tokens=12000
+RESULT: Transfer 0 #2146: from=0x0000000000000000000000000000000000000000 to=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976 tokens=12000
 undefined
 > 
-RESULT: clubContractAddress=0x2304b8c8375249c482b1f560fc8ffe2420ef2c2e
-RESULT: club.token=0xa523cbb90a5124415c167f7a8cea59e9cb9eba92
+RESULT: clubContractAddress=0x4a8591f2ae0da15e0ed6a24786c6bb84e39f9679
+RESULT: club.token=0x283df2a66598c65acfb7b326916376c938c50ddf
 RESULT: club.initialised=true
 RESULT: club.numberOfMembers=1
 RESULT: club.getMembers=["0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976"]
 RESULT: club.member[0]=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976 [true, 0, 'Alice']
+RESULT: club.numberOfProposals=0
 RESULT: club.quorum=80%
 RESULT: club.quorumDecayPerWeek=10%
 RESULT: club.requiredMajority=70%
@@ -381,7 +378,7 @@ RESULT: club.getQuorum(now, 6 weeks)=20%
 RESULT: club.getQuorum(now, 7 weeks)=10%
 RESULT: club.getQuorum(now, 8 weeks)=0%
 RESULT: club.getQuorum(now, 9 weeks)=0%
-RESULT: MemberAdded 0 #35398 {"memberAddress":"0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","name":"Alice","totalAfter":"1"}
+RESULT: MemberAdded 0 #2146 {"memberAddress":"0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","name":"Alice","totalAfter":"1"}
 undefined
 > 
 RESULT: 
@@ -395,28 +392,27 @@ undefined
 > 
 undefined
 > 
-ReferenceError: 'changeMemberNameMessage' is not defined
-    at <anonymous>:1:32
-
+RESULT: ----- Set Member Name -----
+undefined
 > 
 undefined
 > 
 ... 
 undefined
 > 
-ReferenceError: 'changeMemberNameMessage' is not defined
-    at <anonymous>:1:38
-
+RESULT: PASS Set Member Name
+1
 > 
-RESULT: setMemberNameTx status=0x1 Success gas=4000000 gasUsed=40993 costETH=0.000245958 costUSD=0.17038494492 @ ETH/USD=692.74 gasPrice=6 gwei block=35401 txIx=0 txId=0xa35bd2c254be2115eacc4c9725ef936f8ed24f22341a59cc473dadc97abce405 @ 1526551856 Thu, 17 May 2018 10:10:56 UTC
+RESULT: setMemberNameTx status=0x1 Success gas=4000000 gasUsed=41078 costETH=0.000246468 costUSD=0.17073824232 @ ETH/USD=692.74 gasPrice=6 gwei block=2151 txIx=0 txId=0x544eff7a7c2927d5902d3657294653810417302295393592283036cc305edc26 @ 1526577522 Thu, 17 May 2018 17:18:42 UTC
 undefined
 > 
-RESULT: clubContractAddress=0x2304b8c8375249c482b1f560fc8ffe2420ef2c2e
-RESULT: club.token=0xa523cbb90a5124415c167f7a8cea59e9cb9eba92
+RESULT: clubContractAddress=0x4a8591f2ae0da15e0ed6a24786c6bb84e39f9679
+RESULT: club.token=0x283df2a66598c65acfb7b326916376c938c50ddf
 RESULT: club.initialised=true
 RESULT: club.numberOfMembers=1
 RESULT: club.getMembers=["0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976"]
 RESULT: club.member[0]=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976 [true, 0, 'Alice in Blockchains']
+RESULT: club.numberOfProposals=0
 RESULT: club.quorum=80%
 RESULT: club.quorumDecayPerWeek=10%
 RESULT: club.requiredMajority=70%
@@ -430,10 +426,206 @@ RESULT: club.getQuorum(now, 6 weeks)=20%
 RESULT: club.getQuorum(now, 7 weeks)=10%
 RESULT: club.getQuorum(now, 8 weeks)=0%
 RESULT: club.getQuorum(now, 9 weeks)=0%
-RESULT: MemberNameUpdated 0 #35401 {"memberAddress":"0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","newName":"Alice in Blockchains","oldName":"Alice"}
+RESULT: MemberNameUpdated 0 #2151 {"memberAddress":"0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","newName":"Alice in Blockchains","oldName":"Alice"}
 undefined
 > 
 RESULT: 
 undefined
+> 
+> 
+> 
+undefined
+> 
+undefined
+> 
+undefined
+> 
+RESULT: ----- Add Member Proposal #1 -----
+undefined
+> 
+undefined
+> 
+... 
+undefined
+> 
+RESULT:  # Account                                             EtherBalanceChange                          Token Name
+RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.050334228000000000           0.000000000000000000 Account #0 - Miner
+RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.029412348000000000           0.000000000000000000 Account #1 - Contract Owner
+RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976       -0.020921880000000000       12000.000000000000000000 Account #2 - Alice
+RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000       12000.000000000000000000 Account #3 - Bob
+RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Carol
+RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5 - Dave
+RESULT:  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
+RESULT:  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
+RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
+RESULT:  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
+RESULT: 10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #10
+RESULT: 11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11
+RESULT: 12 0xb797d2439cd318684f93de852b4928ea75ae6917        0.000000000000000000           0.000000000000000000 Members Library
+RESULT: 13 0x9fb3c6433aa45e3eb6df7d4f1ed943a8138a4923        0.000000000000000000           0.000000000000000000 ClubFactory
+RESULT: 14 0x283df2a66598c65acfb7b326916376c938c50ddf        0.000000000000000000           0.000000000000000000 Token 'SITS' 'Sit Minutes'
+RESULT: 15 0x4a8591f2ae0da15e0ed6a24786c6bb84e39f9679        0.000000000000000000           0.000000000000000000 Club 'Babysitters Club'
+RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+RESULT:                                                                                 24000.000000000000000000 Total Token Balances
+RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+RESULT: 
+undefined
+> 
+RESULT: PASS Add Member Proposal #1 - Alice addMemberProposal1(ac3, 'Bob')
+1
+> 
+RESULT: addMemberProposal1_1Tx status=0x1 Success gas=500000 gasUsed=400252 costETH=0.002401512 costUSD=1.66362342288 @ ETH/USD=692.74 gasPrice=6 gwei block=2154 txIx=0 txId=0xede74b5d3ad04099863dcce29624bd69ea2bbf55007332bd54814745cc034cef @ 1526577525 Thu, 17 May 2018 17:18:45 UTC
+undefined
+> 
+RESULT: clubContractAddress=0x4a8591f2ae0da15e0ed6a24786c6bb84e39f9679
+RESULT: club.token=0x283df2a66598c65acfb7b326916376c938c50ddf
+RESULT: club.initialised=true
+RESULT: club.numberOfMembers=2
+RESULT: club.getMembers=["0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0"]
+RESULT: club.member[0]=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976 [true, 0, 'Alice in Blockchains']
+RESULT: club.member[1]=0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0 [true, 1, 'Bob']
+RESULT: club.numberOfProposals=1
+RESULT: club.getProposal[0]=["0","0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","Bob"] ["0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0","0x0000000000000000000000000000000000000000","0x0000000000000000000000000000000000000000","0x0000000000000000000000000000000000000000","0"] ["0","1","0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","1526577525","1526577525"]
+RESULT: club.quorum=80%
+RESULT: club.quorumDecayPerWeek=10%
+RESULT: club.requiredMajority=70%
+RESULT: club.getQuorum(now, 0 weeks)=80%
+RESULT: club.getQuorum(now, 1 weeks)=70%
+RESULT: club.getQuorum(now, 2 weeks)=60%
+RESULT: club.getQuorum(now, 3 weeks)=50%
+RESULT: club.getQuorum(now, 4 weeks)=40%
+RESULT: club.getQuorum(now, 5 weeks)=30%
+RESULT: club.getQuorum(now, 6 weeks)=20%
+RESULT: club.getQuorum(now, 7 weeks)=10%
+RESULT: club.getQuorum(now, 8 weeks)=0%
+RESULT: club.getQuorum(now, 9 weeks)=0%
+RESULT: NewProposal 0 #2154 {"proposalId":"0","proposalType":"0","proposer":"0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976"}
+RESULT: - proposalData1=["0","0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","Bob"]
+RESULT: - proposalData2=["0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0","0x0000000000000000000000000000000000000000","0x0000000000000000000000000000000000000000","0x0000000000000000000000000000000000000000","0"]
+RESULT: - proposalData3=["0","1","0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","1526577525","1526577525"]
+RESULT: Voted 0 #2154 {"memberVotedNo":"0","memberVotedYes":"1","proposalId":"0","vote":true,"voter":"0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976"}
+RESULT: VoteResult 0 #2154 {"membersLength":"1","proposalId":"0","quorumPercent":"80","requiredMajority":"70","votes":"1","yesPercent":"100"}
+RESULT: MemberAdded 0 #2154 {"memberAddress":"0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0","name":"Bob","totalAfter":"2"}
+undefined
+> 
+RESULT: tokenContractAddress=0x283df2a66598c65acfb7b326916376c938c50ddf
+RESULT: token.owner=0x4a8591f2ae0da15e0ed6a24786c6bb84e39f9679
+RESULT: token.newOwner=0x0000000000000000000000000000000000000000
+RESULT: token.symbol=SITS
+RESULT: token.name=Sit Minutes
+RESULT: token.decimals=18
+RESULT: token.totalSupply=24000
+RESULT: Transfer 0 #2154: from=0x0000000000000000000000000000000000000000 to=0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0 tokens=12000
+undefined
+> 
+RESULT: 
+undefined
+> 
+> 
+> 
+undefined
+> 
+undefined
+> 
+undefined
+> 
+RESULT: ----- Add Member Proposal #2 -----
+undefined
+> 
+undefined
+> 
+... 
+undefined
+> 
+undefined
+> 
+... 
+undefined
+> 
+RESULT:  # Account                                             EtherBalanceChange                          Token Name
+RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.052994952000000000           0.000000000000000000 Account #0 - Miner
+RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.029412348000000000           0.000000000000000000 Account #1 - Contract Owner
+RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976       -0.022202424000000000       12000.000000000000000000 Account #2 - Alice
+RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0       -0.001380180000000000       12000.000000000000000000 Account #3 - Bob
+RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000       12000.000000000000000000 Account #4 - Carol
+RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5 - Dave
+RESULT:  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
+RESULT:  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
+RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
+RESULT:  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
+RESULT: 10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #10
+RESULT: 11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11
+RESULT: 12 0xb797d2439cd318684f93de852b4928ea75ae6917        0.000000000000000000           0.000000000000000000 Members Library
+RESULT: 13 0x9fb3c6433aa45e3eb6df7d4f1ed943a8138a4923        0.000000000000000000           0.000000000000000000 ClubFactory
+RESULT: 14 0x283df2a66598c65acfb7b326916376c938c50ddf        0.000000000000000000           0.000000000000000000 Token 'SITS' 'Sit Minutes'
+RESULT: 15 0x4a8591f2ae0da15e0ed6a24786c6bb84e39f9679        0.000000000000000000           0.000000000000000000 Club 'Babysitters Club'
+RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+RESULT:                                                                                 36000.000000000000000000 Total Token Balances
+RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+RESULT: 
+undefined
+> 
+RESULT: PASS Add Member Proposal #2 - Alice addMemberProposal2(ac4, 'Carol')
+1
+> 
+RESULT: PASS Add Member Proposal #2 - Bob voteYes(1)
+1
+> 
+RESULT: addMemberProposal2_1Tx status=0x1 Success gas=500000 gasUsed=213424 costETH=0.001280544 costUSD=0.88708405056 @ ETH/USD=692.74 gasPrice=6 gwei block=2159 txIx=0 txId=0x5bba0437369a44b8d2f1b5fef7ff454c6072d9464c89a2281eedb13c0e0b0ddc @ 1526577530 Thu, 17 May 2018 17:18:50 UTC
+undefined
+> 
+RESULT: addMemberProposal2_2Tx status=0x1 Success gas=500000 gasUsed=230030 costETH=0.00138018 costUSD=0.9561058932 @ ETH/USD=692.74 gasPrice=6 gwei block=2161 txIx=0 txId=0xeb576b86071fc3f49b2eca3541eca4b85392bb3f5570a960a2dc2374124ad699 @ 1526577532 Thu, 17 May 2018 17:18:52 UTC
+undefined
+> 
+RESULT: clubContractAddress=0x4a8591f2ae0da15e0ed6a24786c6bb84e39f9679
+RESULT: club.token=0x283df2a66598c65acfb7b326916376c938c50ddf
+RESULT: club.initialised=true
+RESULT: club.numberOfMembers=3
+RESULT: club.getMembers=["0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0","0xa44a08d3f6933c69212114bb66e2df1813651844"]
+RESULT: club.member[0]=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976 [true, 0, 'Alice in Blockchains']
+RESULT: club.member[1]=0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0 [true, 1, 'Bob']
+RESULT: club.member[2]=0xa44a08d3f6933c69212114bb66e2df1813651844 [true, 2, 'Carol']
+RESULT: club.numberOfProposals=2
+RESULT: club.getProposal[0]=["0","0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","Bob"] ["0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0","0x0000000000000000000000000000000000000000","0x0000000000000000000000000000000000000000","0x0000000000000000000000000000000000000000","0"] ["0","1","0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","1526577525","1526577525"]
+RESULT: club.getProposal[1]=["0","0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","Carol"] ["0xa44a08d3f6933c69212114bb66e2df1813651844","0x0000000000000000000000000000000000000000","0x0000000000000000000000000000000000000000","0x0000000000000000000000000000000000000000","0"] ["0","2","0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0","1526577530","1526577532"]
+RESULT: club.quorum=80%
+RESULT: club.quorumDecayPerWeek=10%
+RESULT: club.requiredMajority=70%
+RESULT: club.getQuorum(now, 0 weeks)=80%
+RESULT: club.getQuorum(now, 1 weeks)=70%
+RESULT: club.getQuorum(now, 2 weeks)=60%
+RESULT: club.getQuorum(now, 3 weeks)=50%
+RESULT: club.getQuorum(now, 4 weeks)=40%
+RESULT: club.getQuorum(now, 5 weeks)=30%
+RESULT: club.getQuorum(now, 6 weeks)=20%
+RESULT: club.getQuorum(now, 7 weeks)=10%
+RESULT: club.getQuorum(now, 8 weeks)=0%
+RESULT: club.getQuorum(now, 9 weeks)=0%
+RESULT: NewProposal 0 #2159 {"proposalId":"1","proposalType":"0","proposer":"0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976"}
+RESULT: - proposalData1=["0","0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","Carol"]
+RESULT: - proposalData2=["0xa44a08d3f6933c69212114bb66e2df1813651844","0x0000000000000000000000000000000000000000","0x0000000000000000000000000000000000000000","0x0000000000000000000000000000000000000000","0"]
+RESULT: - proposalData3=["0","2","0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0","1526577530","1526577532"]
+RESULT: Voted 0 #2159 {"memberVotedNo":"0","memberVotedYes":"1","proposalId":"1","vote":true,"voter":"0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976"}
+RESULT: Voted 1 #2161 {"memberVotedNo":"0","memberVotedYes":"2","proposalId":"1","vote":true,"voter":"0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0"}
+RESULT: VoteResult 0 #2161 {"membersLength":"2","proposalId":"1","quorumPercent":"80","requiredMajority":"70","votes":"2","yesPercent":"100"}
+RESULT: MemberAdded 0 #2161 {"memberAddress":"0xa44a08d3f6933c69212114bb66e2df1813651844","name":"Carol","totalAfter":"3"}
+undefined
+> 
+RESULT: tokenContractAddress=0x283df2a66598c65acfb7b326916376c938c50ddf
+RESULT: token.owner=0x4a8591f2ae0da15e0ed6a24786c6bb84e39f9679
+RESULT: token.newOwner=0x0000000000000000000000000000000000000000
+RESULT: token.symbol=SITS
+RESULT: token.name=Sit Minutes
+RESULT: token.decimals=18
+RESULT: token.totalSupply=36000
+RESULT: Transfer 0 #2161: from=0x0000000000000000000000000000000000000000 to=0xa44a08d3f6933c69212114bb66e2df1813651844 tokens=12000
+undefined
+> 
+RESULT: 
+undefined
+> 
+> 
 > 
 > 

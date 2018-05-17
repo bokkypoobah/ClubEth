@@ -117,7 +117,6 @@ while (txpool.status.pending > 0) {
 printBalances();
 failIfTxStatusError(membersLibTx, deployMembersLibMessage);
 printTxData("membersLibTx", membersLibTx);
-// printTokenContractDetails();
 console.log("RESULT: ");
 
 
@@ -167,9 +166,9 @@ var tokensForNewMembers = new BigNumber(200 * 60).shift(18);
 // -----------------------------------------------------------------------------
 console.log("RESULT: ----- " + deployClubMessage + " -----");
 var clubContract = web3.eth.contract(clubAbi);
-console.log(JSON.stringify(clubContract));
+// console.log(JSON.stringify(clubContract));
 var tokenContract = web3.eth.contract(tokenAbi);
-console.log(JSON.stringify(tokenContract));
+// console.log(JSON.stringify(tokenContract));
 var deployClubTx = clubFactory.deployClubContract(clubName, tokenSymbol, tokenName, tokenDecimal, memberName, tokensForNewMembers, {from: aliceAccount, gas: 4000000, gasPrice: defaultGasPrice});
 while (txpool.status.pending > 0) {
 }
@@ -201,14 +200,51 @@ console.log("RESULT: ");
 // -----------------------------------------------------------------------------
 var setMemberNameMessage = "Set Member Name";
 // -----------------------------------------------------------------------------
-console.log("RESULT: ----- " + changeMemberNameMessage + " -----");
+console.log("RESULT: ----- " + setMemberNameMessage + " -----");
 var setMemberNameTx = club.setMemberName("Alice in Blockchains", {from: aliceAccount, gas: 4000000, gasPrice: defaultGasPrice});
 while (txpool.status.pending > 0) {
 }
-failIfTxStatusError(setMemberNameTx, changeMemberNameMessage);
+failIfTxStatusError(setMemberNameTx, setMemberNameMessage);
 printTxData("setMemberNameTx", setMemberNameTx);
 printClubContractDetails();
 console.log("RESULT: ");
+
+
+// -----------------------------------------------------------------------------
+var addMemberProposal1_Message = "Add Member Proposal #1";
+// -----------------------------------------------------------------------------
+console.log("RESULT: ----- " + addMemberProposal1_Message + " -----");
+var addMemberProposal1_1Tx = club.proposeAddMember("Bob", bobAccount, {from: aliceAccount, gas: 500000, gasPrice: defaultGasPrice});
+while (txpool.status.pending > 0) {
+}
+printBalances();
+failIfTxStatusError(addMemberProposal1_1Tx, addMemberProposal1_Message + " - Alice addMemberProposal1(ac3, 'Bob')");
+printTxData("addMemberProposal1_1Tx", addMemberProposal1_1Tx);
+printClubContractDetails();
+printTokenContractDetails();
+console.log("RESULT: ");
+
+
+// -----------------------------------------------------------------------------
+var addMemberProposal2_Message = "Add Member Proposal #2";
+// -----------------------------------------------------------------------------
+console.log("RESULT: ----- " + addMemberProposal2_Message + " -----");
+var addMemberProposal2_1Tx = club.proposeAddMember("Carol", carolAccount, {from: aliceAccount, gas: 500000, gasPrice: defaultGasPrice});
+while (txpool.status.pending > 0) {
+}
+var addMemberProposal2_2Tx = club.voteYes(1, {from: bobAccount, gas: 500000, gasPrice: defaultGasPrice});
+while (txpool.status.pending > 0) {
+}
+printBalances();
+failIfTxStatusError(addMemberProposal2_1Tx, addMemberProposal2_Message + " - Alice addMemberProposal2(ac4, 'Carol')");
+failIfTxStatusError(addMemberProposal2_2Tx, addMemberProposal2_Message + " - Bob voteYes(1)");
+printTxData("addMemberProposal2_1Tx", addMemberProposal2_1Tx);
+printTxData("addMemberProposal2_2Tx", addMemberProposal2_2Tx);
+printClubContractDetails();
+printTokenContractDetails();
+console.log("RESULT: ");
+
+
 
 exit;
 

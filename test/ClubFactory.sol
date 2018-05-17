@@ -30,7 +30,8 @@ contract ERC20Interface {
 
 
 // ----------------------------------------------------------------------------
-// ClubToken Interface = ERC20 + symbol + name + decimals + mint + approveAndCall
+// ClubToken Interface = ERC20 + symbol + name + decimals + mint + burn
+// + approveAndCall
 // ----------------------------------------------------------------------------
 contract ClubTokenInterface is ERC20Interface {
     function symbol() public view returns (string);
@@ -38,6 +39,7 @@ contract ClubTokenInterface is ERC20Interface {
     function decimals() public view returns (uint8);
     function approveAndCall(address spender, uint tokens, bytes data) public returns (bool success);
     function mint(address addr, uint tokens) public returns (bool success);
+    function burn(address addr) public returns (bool success);
 }
 
 
@@ -175,6 +177,12 @@ contract ClubToken is ClubTokenInterface, Owned {
         emit Transfer(address(0), addr, tokens);
         return true;
     }
+    function burn(address addr) public onlyOwner returns (bool success) {
+        _totalSupply = _totalSupply.sub(balances[addr]);
+        emit Transfer(addr, address(0), balances[addr]);
+        balances[addr] = 0;
+        return true;
+    }
     function () public payable {
         revert();
     }
@@ -249,16 +257,17 @@ contract Club {
     using Members for Members.Data;
 
     enum ProposalType {
-        EtherPayment,                      //  0 Ether payment
-        TokenPayment,                      //  1 DFF Token payment
-        OtherTokenPayment,                 //  2 Token payment
-        MintTokens,                        //  3 Mint DFF tokens
-        AddRule,                           //  4 Add governance rule
-        DeleteRule,                        //  5 Delete governance rule
-        UpdateBTTSToken,                   //  6 Update BTTS Token
-        UpdateDAO,                         //  7 Update DAO
-        AddMember,                         //  8 Add member
-        RemoveMember                       // 9 Remove member
+        AddMember,                         //  0 Add member
+        RemoveMember,                      //  1 Remove member
+        MintTokens,                        //  2 Mint tokens
+        BurnTokens,                        //  3 Burn tokens
+        EtherPayment,                      //  4 Ether payment
+        TokenPayment,                      //  5 DFF Token payment
+        OtherTokenPayment,                 //  6 Token payment
+        AddRule,                           //  7 Add governance rule
+        DeleteRule,                        //  8 Delete governance rule
+        UpdateClubToken,                   //  9 Update Club Token
+        UpdateClub                         // 10 Update Club
     }
 
     struct Proposal {
@@ -270,11 +279,10 @@ contract Club {
         address recipient;
         address tokenContract;
         uint amount;
-        mapping(address => bool) voted;
+        mapping(address => uint) voted;
         uint memberVotedNo;
         uint memberVotedYes;
         address executor;
-        bool open;
         uint initiated;
         uint closed;
     }
@@ -300,11 +308,12 @@ contract Club {
     event MemberRemoved(address indexed memberAddress, string name, uint totalAfter);
     event MemberNameUpdated(address indexed memberAddress, string oldName, string newName);
 
+    event NewProposal(uint indexed proposalId, ProposalType indexed proposalType, address indexed proposer); 
+    event Voted(uint indexed proposalId, address indexed voter, bool vote, uint memberVotedYes, uint memberVotedNo);
+    event VoteResult(uint indexed proposalId, uint votes, uint quorumPercent, uint membersLength, uint yesPercent, uint requiredMajority);
     event TokenUpdated(address indexed oldToken, address indexed newToken);
     event TokensForNewMembersUpdated(uint oldTokens, uint newTokens);
     event EtherDeposited(address indexed sender, uint amount);
-    event NewProposal(uint indexed proposalId, ProposalType indexed proposalType, address indexed proposer, address recipient, address tokenContract, uint amount); 
-    event Voted(uint indexed proposalId, address indexed voter, bool vote, uint memberVotedYes, uint memberVotedNo);
     event EtherPaid(uint indexed proposalId, address indexed sender, address indexed recipient, uint amount);
 
     constructor(string _name, address _token, uint _tokensForNewMembers) public {
@@ -322,6 +331,27 @@ contract Club {
     function setMemberName(string memberName) public {
         members.setName(msg.sender, memberName);
     }
+    function proposeAddMember(string memberName, address memberAddress) public {
+        require(members.isMember(msg.sender));
+        Proposal memory proposal = Proposal({
+            proposalType: ProposalType.AddMember,
+            proposer: msg.sender,
+            description: memberName,
+            address1: memberAddress,
+            address2: address(0),
+            recipient: address(0),
+            tokenContract: address(0),
+            amount: 0,
+            memberVotedNo: 0,
+            memberVotedYes: 0,
+            executor: address(0),
+            initiated: now,
+            closed: 0
+        });
+        proposals.push(proposal);
+        emit NewProposal(proposals.length - 1, proposal.proposalType, msg.sender);
+        vote(proposals.length - 1, true);
+    }
     function proposeEtherPayment(string description, address _recipient, uint _amount) public {
         require(address(this).balance >= _amount);
         require(members.isMember(msg.sender));
@@ -337,12 +367,12 @@ contract Club {
             memberVotedNo: 0,
             memberVotedYes: 0,
             executor: address(0),
-            open: true,
             initiated: now,
             closed: 0
         });
         proposals.push(proposal);
-        emit NewProposal(proposals.length - 1, proposal.proposalType, msg.sender, _recipient, address(0), _amount); 
+        emit NewProposal(proposals.length - 1, proposal.proposalType, msg.sender);
+        vote(proposals.length - 1, true);
     }
     function voteNo(uint proposalId) public {
         vote(proposalId, false);
@@ -353,23 +383,43 @@ contract Club {
     function vote(uint proposalId, bool yesNo) public {
         require(members.isMember(msg.sender));
         Proposal storage proposal = proposals[proposalId];
-        require(proposal.open);
-        if (!proposal.voted[msg.sender]) {
+        require(proposal.closed == 0);
+        if (proposal.voted[msg.sender] == 0) {
             if (yesNo) {
                 proposal.memberVotedYes++;
+                proposal.voted[msg.sender] = 1;
             } else {
                 proposal.memberVotedNo++;
+                proposal.voted[msg.sender] = 2;
             }
             emit Voted(proposalId, msg.sender, yesNo, proposal.memberVotedYes, proposal.memberVotedNo);
             proposal.voted[msg.sender];
         }
-        if (proposal.memberVotedYes > 0 && proposal.open) {
-            if (proposal.proposalType == ProposalType.EtherPayment) {
-                proposal.recipient.transfer(proposal.amount);
-                emit EtherPaid(proposalId, msg.sender, proposal.recipient, proposal.amount);
-                proposal.executor = msg.sender;
-                proposal.open = false;
+        uint voteCount = proposal.memberVotedYes + proposal.memberVotedNo;
+        if (voteCount * 100 >= getQuorum(proposal.initiated, now) * members.length()) {
+            uint yesPercent = proposal.memberVotedYes * 100 / voteCount;
+            emit VoteResult(proposalId, voteCount, getQuorum(proposal.initiated, now), members.length(), yesPercent, requiredMajority);
+            if (yesPercent >= requiredMajority) {
+                executeProposal(proposalId);
             }
+            proposal.executor = msg.sender;
+            proposal.closed = now;
+        }
+    }
+    function executeProposal(uint proposalId) internal {
+        Proposal storage proposal = proposals[proposalId];
+        require(proposal.closed == 0);
+        if (proposal.proposalType == ProposalType.AddMember) {
+            members.add(proposal.address1, proposal.description);
+            token.mint(proposal.address1, tokensForNewMembers);
+            // TODO: Log event
+        } else if (proposal.proposalType == ProposalType.RemoveMember) {
+            members.remove(proposal.address1);
+            token.burn(proposal.address1);
+            // TODO: Log event
+        } else if (proposal.proposalType == ProposalType.EtherPayment) {
+            proposal.recipient.transfer(proposal.amount);
+            emit EtherPaid(proposalId, msg.sender, proposal.recipient, proposal.amount);
         }
     }
 
@@ -427,14 +477,14 @@ contract Club {
         _tokenContract = proposal.tokenContract;
         _amount = proposal.amount;
     }
-    function getProposalData3(uint proposalId) public view returns (uint _memberVotedNo, uint _memberVotedYes, address _executor, bool _open) {
+    function getProposalData3(uint proposalId) public view returns (uint _memberVotedNo, uint _memberVotedYes, address _executor, uint _initiated, uint _closed) {
         Proposal memory proposal = proposals[proposalId];
         _memberVotedNo = proposal.memberVotedNo;
         _memberVotedYes = proposal.memberVotedYes;
         _executor = proposal.executor;
-        _open = proposal.open;
+        _initiated = proposal.initiated;
+        _closed = proposal.closed;
     }
-
     function () public payable {
         emit EtherDeposited(msg.sender, msg.value);
     }
