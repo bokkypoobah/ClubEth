@@ -269,7 +269,6 @@ contract Club {
         // TODO opentime, closedtime
     }
 
-    string public symbol;
     string public name;
 
     uint8 public constant TOKEN_DECIMALS = 18;
@@ -283,8 +282,8 @@ contract Club {
     uint public tokensForNewMembers; 
 
     // Must be copied here to be added to the ABI
-    event MemberAdded(address indexed _address, bytes32 _name, uint totalAfter);
-    event MemberRemoved(address indexed _address, bytes32 _name, uint totalAfter);
+    event MemberAdded(address indexed _address, string _name, uint totalAfter);
+    event MemberRemoved(address indexed _address, string _name, uint totalAfter);
 
     event TokenUpdated(address indexed oldToken, address indexed newToken);
     event TokensForNewMembersUpdated(uint oldTokens, uint newTokens);
@@ -293,9 +292,8 @@ contract Club {
     event Voted(uint indexed proposalId, address indexed voter, bool vote, uint memberVotedYes, uint memberVotedNo);
     event EtherPaid(uint indexed proposalId, address indexed sender, address indexed recipient, uint amount);
 
-    constructor(string _symbol, string _name, address _token, uint _tokensForNewMembers) public {
+    constructor(string _name, address _token, uint _tokensForNewMembers) public {
         members.init();
-        symbol = _symbol;
         name = _name;
         token = ClubTokenInterface(_token);
         tokensForNewMembers = _tokensForNewMembers;
@@ -424,7 +422,7 @@ contract ClubFactory is Owned {
     Club[] public deployedClubs;
     ClubToken[] public deployedTokens;
 
-    event ClubListing(address indexed club, string clubSymbol, string clubName,
+    event ClubListing(address indexed club, string clubName,
         address indexed token, string tokenSymbol, string tokenName, uint8 tokenDecimals,
         address indexed memberName, uint tokensForNewMembers);
 
@@ -432,7 +430,6 @@ contract ClubFactory is Owned {
         valid = _verify[addr];
     }
     function deployClubContract(
-        string clubSymbol,
         string clubName,
         string tokenSymbol,
         string tokenName,
@@ -443,12 +440,12 @@ contract ClubFactory is Owned {
         token = new ClubToken(tokenSymbol, tokenName, tokenDecimals);
         _verify[address(token)] = true;
         deployedTokens.push(token);
-        club = new Club(clubSymbol, clubName, address(token), tokensForNewMembers);
+        club = new Club(clubName, address(token), tokensForNewMembers);
         token.transferOwnershipImmediately(address(club));
         club.init(msg.sender, memberName);
         _verify[address(club)] = true;
         deployedClubs.push(club);
-        emit ClubListing(address(club), clubSymbol, clubName, address(token), tokenSymbol, tokenName, tokenDecimals, msg.sender, tokensForNewMembers);
+        emit ClubListing(address(club), clubName, address(token), tokenSymbol, tokenName, tokenDecimals, msg.sender, tokensForNewMembers);
     }
     function numberOfDeployedClubs() public view returns (uint) {
         return deployedClubs.length;

@@ -158,9 +158,8 @@ console.log("RESULT: ");
 
 // -----------------------------------------------------------------------------
 var deployClubMessage = "Deploy Club Contract";
-var clubSymbol = "SIT";
-var clubName = "Sitters Club";
-var tokenSymbol = "SITM";
+var clubName = "Babysitters Club";
+var tokenSymbol = "SITS";
 var tokenName = "Sit Minutes";
 var tokenDecimal = 18;
 var memberName = "Alice";
@@ -171,7 +170,7 @@ var clubContract = web3.eth.contract(clubAbi);
 console.log(JSON.stringify(clubContract));
 var tokenContract = web3.eth.contract(tokenAbi);
 console.log(JSON.stringify(tokenContract));
-var deployClubTx = clubFactory.deployClubContract(clubSymbol, clubName, tokenSymbol, tokenName, tokenDecimal, memberName, tokensForNewMembers, {from: aliceAccount, gas: 4000000, gasPrice: defaultGasPrice});
+var deployClubTx = clubFactory.deployClubContract(clubName, tokenSymbol, tokenName, tokenDecimal, memberName, tokensForNewMembers, {from: aliceAccount, gas: 4000000, gasPrice: defaultGasPrice});
 while (txpool.status.pending > 0) {
 }
 var results = getClubAndTokenListing();
