@@ -355,10 +355,12 @@ function printClubContractDetails() {
     console.log("RESULT: club.requiredMajority=" + contract.requiredMajority() + "%");
 
     var now = new Date()/1000;
+    var line = "";
     for (i = 0; i < 10; i++) {
       var date = parseInt(now) + 60 * 60 * 24 * 7 * i;
-      console.log("RESULT: club.getQuorum(now, " + i + " weeks)=" + contract.getQuorum(now, date) + "%");
+      line = line + i + "w=" + contract.getQuorum(now, date) + "% ";
     }
+    console.log("RESULT: club.getQuorum(now, * weeks)=" + line);
 
     var latestBlock = eth.blockNumber;
 

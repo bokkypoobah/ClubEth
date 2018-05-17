@@ -72,6 +72,8 @@ var clubFactoryBin = "0x" + clubFactoryOutput.contracts["$CLUBFACTORYSOL:ClubFac
 var tokenAbi = JSON.parse(clubFactoryOutput.contracts["$CLUBFACTORYSOL:ClubToken"].abi);
 var membersLibAbi = JSON.parse(clubFactoryOutput.contracts["$CLUBFACTORYSOL:Members"].abi);
 var membersLibBin = "0x" + clubFactoryOutput.contracts["$CLUBFACTORYSOL:Members"].bin;
+var proposalsLibAbi = JSON.parse(clubFactoryOutput.contracts["$CLUBFACTORYSOL:Proposals"].abi);
+var proposalsLibBin = "0x" + clubFactoryOutput.contracts["$CLUBFACTORYSOL:Proposals"].bin;
 var clubAbi = JSON.parse(clubFactoryOutput.contracts["$CLUBFACTORYSOL:Club"].abi);
 var clubBin = "0x" + clubFactoryOutput.contracts["$CLUBFACTORYSOL:Club"].bin;
 
@@ -80,6 +82,8 @@ var clubBin = "0x" + clubFactoryOutput.contracts["$CLUBFACTORYSOL:Club"].bin;
 // console.log("DATA: tokenAbi=" + JSON.stringify(tokenAbi));
 // console.log("DATA: membersLibAbi=" + JSON.stringify(membersLibAbi));
 // console.log("DATA: membersLibBin=" + JSON.stringify(membersLibBin));
+// console.log("DATA: proposalsLibAbi=" + JSON.stringify(proposalsLibAbi));
+// console.log("DATA: proposalsLibBin=" + JSON.stringify(proposalsLibBin));
 // console.log("DATA: clubAbi=" + JSON.stringify(clubAbi));
 // console.log("DATA: clubBin=" + JSON.stringify(clubBin));
 
@@ -120,12 +124,42 @@ console.log("RESULT: ");
 
 
 // -----------------------------------------------------------------------------
+var deployProposalsLibMessage = "Deploy Proposals Library";
+// -----------------------------------------------------------------------------
+console.log("RESULT: ----- " + deployProposalsLibMessage + " -----");
+var proposalsLibContract = web3.eth.contract(proposalsLibAbi);
+// console.log(JSON.stringify(proposalsLibContract));
+var proposalsLibTx = null;
+var proposalsLibAddress = null;
+var currentBlock = eth.blockNumber;
+var proposalsLibContract = proposalsLibContract.new({from: contractOwnerAccount, data: proposalsLibBin, gas: 6000000, gasPrice: defaultGasPrice},
+  function(e, contract) {
+    if (!e) {
+      if (!contract.address) {
+        proposalsLibTx = contract.transactionHash;
+      } else {
+        proposalsLibAddress = contract.address;
+        addAccount(proposalsLibAddress, "Proposals Library");
+        console.log("DATA: proposalsLibAddress=" + proposalsLibAddress);
+      }
+    }
+  }
+);
+while (txpool.status.pending > 0) {
+}
+printBalances();
+failIfTxStatusError(proposalsLibTx, deployProposalsLibMessage);
+printTxData("proposalsLibTx", proposalsLibTx);
+console.log("RESULT: ");
+
+
+// -----------------------------------------------------------------------------
 var deployClubFactoryMessage = "Deploy ClubFactory";
 // -----------------------------------------------------------------------------
 console.log("RESULT: ----- " + deployClubFactoryMessage + " -----");
-// console.log("RESULT: clubFactoryBin='" + clubFactoryBin + "'");
-var newClubFactoryBin = clubFactoryBin.replace(/__ClubFactory\.sol\:Members_______________/g, membersLibAddress.substring(2, 42));
-// console.log("RESULT: newClubFactoryBin='" + newClubFactoryBin + "'");
+console.log("RESULT: clubFactoryBin='" + clubFactoryBin + "'");
+var newClubFactoryBin = clubFactoryBin.replace(/__ClubFactory\.sol\:Members_______________/g, membersLibAddress.substring(2, 42)).replace(/__ClubFactory\.sol\:Proposals_____________/g, proposalsLibAddress.substring(2, 42));
+console.log("RESULT: newClubFactoryBin='" + newClubFactoryBin + "'");
 var clubFactoryContract = web3.eth.contract(clubFactoryAbi);
 // console.log(JSON.stringify(clubFactoryAbi));
 // console.log(newClubFactoryBin);
@@ -231,14 +265,24 @@ console.log("RESULT: ----- " + addMemberProposal2_Message + " -----");
 var addMemberProposal2_1Tx = club.proposeAddMember("Carol", carolAccount, {from: aliceAccount, gas: 500000, gasPrice: defaultGasPrice});
 while (txpool.status.pending > 0) {
 }
-var addMemberProposal2_2Tx = club.voteYes(1, {from: bobAccount, gas: 500000, gasPrice: defaultGasPrice});
+var addMemberProposal2_2Tx = club.voteNo(1, {from: aliceAccount, gas: 500000, gasPrice: defaultGasPrice});
+while (txpool.status.pending > 0) {
+}
+var addMemberProposal2_3Tx = club.voteYes(1, {from: aliceAccount, gas: 500000, gasPrice: defaultGasPrice});
+while (txpool.status.pending > 0) {
+}
+var addMemberProposal2_4Tx = club.voteYes(1, {from: bobAccount, gas: 500000, gasPrice: defaultGasPrice});
 while (txpool.status.pending > 0) {
 }
 printBalances();
 failIfTxStatusError(addMemberProposal2_1Tx, addMemberProposal2_Message + " - Alice addMemberProposal(ac4, 'Carol')");
-failIfTxStatusError(addMemberProposal2_2Tx, addMemberProposal2_Message + " - Bob voteYes(1)");
+failIfTxStatusError(addMemberProposal2_2Tx, addMemberProposal2_Message + " - Alice voteNo(1)");
+failIfTxStatusError(addMemberProposal2_3Tx, addMemberProposal2_Message + " - Alice voteYes(1)");
+failIfTxStatusError(addMemberProposal2_4Tx, addMemberProposal2_Message + " - Bob voteYes(1)");
 printTxData("addMemberProposal2_1Tx", addMemberProposal2_1Tx);
 printTxData("addMemberProposal2_2Tx", addMemberProposal2_2Tx);
+printTxData("addMemberProposal2_3Tx", addMemberProposal2_3Tx);
+printTxData("addMemberProposal2_4Tx", addMemberProposal2_4Tx);
 printClubContractDetails();
 printTokenContractDetails();
 console.log("RESULT: ");
