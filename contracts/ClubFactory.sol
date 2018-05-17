@@ -198,8 +198,9 @@ library Members {
         address[] index;
     }
 
-    event MemberAdded(address indexed _address, string _name, uint totalAfter);
-    event MemberRemoved(address indexed _address, string _name, uint totalAfter);
+    event MemberAdded(address indexed memberAddress, string name, uint totalAfter);
+    event MemberRemoved(address indexed memberAddress, string name, uint totalAfter);
+    event MemberNameUpdated(address indexed memberAddress, string oldName, string newName);
 
     function init(Data storage self) public {
         require(!self.initialised);
@@ -227,6 +228,12 @@ library Members {
             self.index.length--;
         }
     }
+    function setName(Data storage self, address memberAddress, string _name) public {
+        Member storage member = self.entries[memberAddress];
+        require(member.exists);
+        emit MemberNameUpdated(memberAddress, member.name, _name);
+        member.name = _name;
+    }
     function length(Data storage self) public view returns (uint) {
         return self.index.length;
     }
@@ -237,6 +244,7 @@ library Members {
 // Club
 // ----------------------------------------------------------------------------
 contract Club {
+    using SafeMath for uint;
     using Members for Members.Data;
 
     enum ProposalType {
@@ -279,11 +287,16 @@ contract Club {
     bool public initialised;
     Proposal[] proposals;
 
-    uint public tokensForNewMembers; 
+    uint public tokensForNewMembers;
+
+    uint public quorum = 80;
+    uint public quorumDecayPerWeek = 10;
+    uint public requiredMajority = 70;
 
     // Must be copied here to be added to the ABI
-    event MemberAdded(address indexed _address, string _name, uint totalAfter);
-    event MemberRemoved(address indexed _address, string _name, uint totalAfter);
+    event MemberAdded(address indexed memberAddress, string name, uint totalAfter);
+    event MemberRemoved(address indexed memberAddress, string name, uint totalAfter);
+    event MemberNameUpdated(address indexed memberAddress, string oldName, string newName);
 
     event TokenUpdated(address indexed oldToken, address indexed newToken);
     event TokensForNewMembersUpdated(uint oldTokens, uint newTokens);
@@ -303,6 +316,9 @@ contract Club {
         initialised = true;
         members.add(_memberAddr, _memberName);
         token.mint(_memberAddr, tokensForNewMembers);
+    }
+    function setMemberName(string memberName) public {
+        members.setName(msg.sender, memberName);
     }
     function proposeEtherPayment(string description, address _recipient, uint _amount) public {
         require(address(this).balance >= _amount);
@@ -382,6 +398,13 @@ contract Club {
         return members.index[_index];
     }
 
+    function getQuorum(uint proposalTime, uint currentTime) public view returns (uint) {
+        if (quorum > currentTime.sub(proposalTime).mul(quorumDecayPerWeek).div(1 weeks)) {
+            return quorum.sub(currentTime.sub(proposalTime).mul(quorumDecayPerWeek).div(1 weeks));
+        } else {
+            return 0;
+        }
+    }
     function numberOfProposals() public view returns (uint) {
         return proposals.length;
     }

@@ -186,13 +186,27 @@ console.log("DATA: clubAddress=" + clubAddress);
 var token = web3.eth.contract(tokenAbi).at(tokenAddress);
 console.log("DATA: tokenAddress=" + tokenAddress);
 addAccount(tokenAddress, "Token '" + token.symbol() + "' '" + token.name() + "'");
-addAccount(clubAddress, "Club '" + club.symbol() + "' '" + club.name() + "'");
+addAccount(clubAddress, "Club '" + club.name() + "'");
 addClubContractAddressAndAbi(clubAddress, clubAbi);
 addTokenContractAddressAndAbi(tokenAddress, tokenAbi);
 printBalances();
+failIfTxStatusError(deployClubTx, deployClubMessage);
 printTxData("deployClubTx", deployClubTx);
 printClubFactoryContractDetails();
 printTokenContractDetails();
+printClubContractDetails();
+console.log("RESULT: ");
+
+
+// -----------------------------------------------------------------------------
+var setMemberNameMessage = "Set Member Name";
+// -----------------------------------------------------------------------------
+console.log("RESULT: ----- " + setMemberNameMessage + " -----");
+var setMemberNameTx = club.setMemberName("Alice in Blockchains", {from: aliceAccount, gas: 4000000, gasPrice: defaultGasPrice});
+while (txpool.status.pending > 0) {
+}
+failIfTxStatusError(setMemberNameTx, setMemberNameMessage);
+printTxData("setMemberNameTx", setMemberNameTx);
 printClubContractDetails();
 console.log("RESULT: ");
 

@@ -337,14 +337,13 @@ function printClubContractDetails() {
     console.log("RESULT: club.numberOfMembers=" + contract.numberOfMembers());
     console.log("RESULT: club.getMembers=" + JSON.stringify(contract.getMembers()));
     var i;
-    /*
     for (i = 0; i < contract.numberOfMembers(); i++) {
       var member = contract.getMemberByIndex(i);
       var data = contract.getMemberData(member);
-      console.log("RESULT: club.member[" + i + "]=" + member + " [" + data[0] + ", " + data[1] + ", " + 
-        web3.toAscii(data[2].replace(/0x.*0/g, "")) + ", " + data[3] + "]");
+      // console.log("RESULT: club.member[" + i + "]=" + member + " " + JSON.stringify(data));
+      console.log("RESULT: club.member[" + i + "]=" + member + " [" + data[0] + ", " + data[1] + ", '" + data[2] + "']");
     }
-
+    /*
     console.log("RESULT: club.numberOfProposals=" + contract.numberOfProposals());
     for (i = 0; i < contract.numberOfProposals(); i++) {
       var proposalData1 = contract.getProposalData1(i);
@@ -353,6 +352,15 @@ function printClubContractDetails() {
       console.log("RESULT: club.getProposal[" + i + "]=" + JSON.stringify(proposalData1) + " " + JSON.stringify(proposalData2) + " " + JSON.stringify(proposalData3));
     }
     */
+    console.log("RESULT: club.quorum=" + contract.quorum() + "%");
+    console.log("RESULT: club.quorumDecayPerWeek=" + contract.quorumDecayPerWeek() + "%");
+    console.log("RESULT: club.requiredMajority=" + contract.requiredMajority() + "%");
+
+    var now = new Date()/1000;
+    for (i = 0; i < 10; i++) {
+      var date = parseInt(now) + 60 * 60 * 24 * 7 * i;
+      console.log("RESULT: club.getQuorum(now, " + i + " weeks)=" + contract.getQuorum(now, date) + "%");
+    }
 
     var latestBlock = eth.blockNumber;
 
@@ -369,6 +377,13 @@ function printClubContractDetails() {
       console.log("RESULT: MemberRemoved " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
     });
     memberRemovedEvents.stopWatching();
+
+    var memberNameUpdatedEvents = contract.MemberNameUpdated({}, { fromBlock: clubFromBlock, toBlock: latestBlock });
+    i = 0;
+    memberNameUpdatedEvents.watch(function (error, result) {
+      console.log("RESULT: MemberNameUpdated " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
+    });
+    memberNameUpdatedEvents.stopWatching();
 
     var tokenUpdatedEvents = contract.TokenUpdated({}, { fromBlock: clubFromBlock, toBlock: latestBlock });
     i = 0;
