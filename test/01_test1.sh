@@ -163,7 +163,7 @@ var tokenSymbol = "SITS";
 var tokenName = "Sit Minutes";
 var tokenDecimal = 18;
 var memberName = "Alice";
-var tokensForNewMembers = new BigNumber(20 * 60).shift(18);
+var tokensForNewMembers = new BigNumber(200 * 60).shift(18);
 // -----------------------------------------------------------------------------
 console.log("RESULT: ----- " + deployClubMessage + " -----");
 var clubContract = web3.eth.contract(clubAbi);
@@ -201,11 +201,11 @@ console.log("RESULT: ");
 // -----------------------------------------------------------------------------
 var setMemberNameMessage = "Set Member Name";
 // -----------------------------------------------------------------------------
-console.log("RESULT: ----- " + setMemberNameMessage + " -----");
+console.log("RESULT: ----- " + changeMemberNameMessage + " -----");
 var setMemberNameTx = club.setMemberName("Alice in Blockchains", {from: aliceAccount, gas: 4000000, gasPrice: defaultGasPrice});
 while (txpool.status.pending > 0) {
 }
-failIfTxStatusError(setMemberNameTx, setMemberNameMessage);
+failIfTxStatusError(setMemberNameTx, changeMemberNameMessage);
 printTxData("setMemberNameTx", setMemberNameTx);
 printClubContractDetails();
 console.log("RESULT: ");

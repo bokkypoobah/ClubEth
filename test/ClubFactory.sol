@@ -171,6 +171,7 @@ contract ClubToken is ClubTokenInterface, Owned {
     }
     function mint(address addr, uint tokens) public onlyOwner returns (bool success) {
         balances[addr] = balances[addr].add(tokens);
+        _totalSupply = _totalSupply.add(tokens);
         emit Transfer(address(0), addr, tokens);
         return true;
     }
@@ -274,7 +275,8 @@ contract Club {
         uint memberVotedYes;
         address executor;
         bool open;
-        // TODO opentime, closedtime
+        uint initiated;
+        uint closed;
     }
 
     string public name;
@@ -335,10 +337,12 @@ contract Club {
             memberVotedNo: 0,
             memberVotedYes: 0,
             executor: address(0),
-            open: true
+            open: true,
+            initiated: now,
+            closed: 0
         });
         proposals.push(proposal);
-        emit NewProposal(proposals.length - 1, ProposalType.EtherPayment, msg.sender, _recipient, address(0), _amount); 
+        emit NewProposal(proposals.length - 1, proposal.proposalType, msg.sender, _recipient, address(0), _amount); 
     }
     function voteNo(uint proposalId) public {
         vote(proposalId, false);
@@ -347,6 +351,7 @@ contract Club {
         vote(proposalId, true);
     }
     function vote(uint proposalId, bool yesNo) public {
+        require(members.isMember(msg.sender));
         Proposal storage proposal = proposals[proposalId];
         require(proposal.open);
         if (!proposal.voted[msg.sender]) {
