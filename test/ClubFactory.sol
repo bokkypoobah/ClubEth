@@ -352,6 +352,27 @@ contract Club {
         emit NewProposal(proposals.length - 1, proposal.proposalType, msg.sender);
         vote(proposals.length - 1, true);
     }
+    function proposeRemoveMember(string description, address memberAddress) public {
+        require(members.isMember(msg.sender));
+        Proposal memory proposal = Proposal({
+            proposalType: ProposalType.RemoveMember,
+            proposer: msg.sender,
+            description: description,
+            address1: memberAddress,
+            address2: address(0),
+            recipient: address(0),
+            tokenContract: address(0),
+            amount: 0,
+            memberVotedNo: 0,
+            memberVotedYes: 0,
+            executor: address(0),
+            initiated: now,
+            closed: 0
+        });
+        proposals.push(proposal);
+        emit NewProposal(proposals.length - 1, proposal.proposalType, msg.sender);
+        vote(proposals.length - 1, true);
+    }
     function proposeEtherPayment(string description, address _recipient, uint _amount) public {
         require(address(this).balance >= _amount);
         require(members.isMember(msg.sender));
@@ -395,10 +416,15 @@ contract Club {
             emit Voted(proposalId, msg.sender, yesNo, proposal.memberVotedYes, proposal.memberVotedNo);
             proposal.voted[msg.sender];
         }
+        uint membersLength = members.length();
+        // TODO: Is this required
+        if (proposal.proposalType == ProposalType.RemoveMember && membersLength > 0) {
+            membersLength--;
+        }
         uint voteCount = proposal.memberVotedYes + proposal.memberVotedNo;
-        if (voteCount * 100 >= getQuorum(proposal.initiated, now) * members.length()) {
+        if (voteCount * 100 >= getQuorum(proposal.initiated, now) * membersLength) {
             uint yesPercent = proposal.memberVotedYes * 100 / voteCount;
-            emit VoteResult(proposalId, voteCount, getQuorum(proposal.initiated, now), members.length(), yesPercent, requiredMajority);
+            emit VoteResult(proposalId, voteCount, getQuorum(proposal.initiated, now), membersLength, yesPercent, requiredMajority);
             if (yesPercent >= requiredMajority) {
                 executeProposal(proposalId);
             }

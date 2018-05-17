@@ -218,7 +218,7 @@ var addMemberProposal1_1Tx = club.proposeAddMember("Bob", bobAccount, {from: ali
 while (txpool.status.pending > 0) {
 }
 printBalances();
-failIfTxStatusError(addMemberProposal1_1Tx, addMemberProposal1_Message + " - Alice addMemberProposal1(ac3, 'Bob')");
+failIfTxStatusError(addMemberProposal1_1Tx, addMemberProposal1_Message + " - Alice addMemberProposal(ac3, 'Bob')");
 printTxData("addMemberProposal1_1Tx", addMemberProposal1_1Tx);
 printClubContractDetails();
 printTokenContractDetails();
@@ -236,10 +236,30 @@ var addMemberProposal2_2Tx = club.voteYes(1, {from: bobAccount, gas: 500000, gas
 while (txpool.status.pending > 0) {
 }
 printBalances();
-failIfTxStatusError(addMemberProposal2_1Tx, addMemberProposal2_Message + " - Alice addMemberProposal2(ac4, 'Carol')");
+failIfTxStatusError(addMemberProposal2_1Tx, addMemberProposal2_Message + " - Alice addMemberProposal(ac4, 'Carol')");
 failIfTxStatusError(addMemberProposal2_2Tx, addMemberProposal2_Message + " - Bob voteYes(1)");
 printTxData("addMemberProposal2_1Tx", addMemberProposal2_1Tx);
 printTxData("addMemberProposal2_2Tx", addMemberProposal2_2Tx);
+printClubContractDetails();
+printTokenContractDetails();
+console.log("RESULT: ");
+
+
+// -----------------------------------------------------------------------------
+var removeMemberProposal1_Message = "Remove Member Proposal #1";
+// -----------------------------------------------------------------------------
+console.log("RESULT: ----- " + removeMemberProposal1_Message + " -----");
+var removeMemberProposal1_1Tx = club.proposeRemoveMember("Remove Bob", bobAccount, {from: carolAccount, gas: 500000, gasPrice: defaultGasPrice});
+while (txpool.status.pending > 0) {
+}
+var removeMemberProposal1_2Tx = club.voteYes(2, {from: aliceAccount, gas: 500000, gasPrice: defaultGasPrice});
+while (txpool.status.pending > 0) {
+}
+printBalances();
+failIfTxStatusError(removeMemberProposal1_1Tx, removeMemberProposal1_Message + " - Carol removeMemberProposal(ac3, 'Bob')");
+failIfTxStatusError(removeMemberProposal1_2Tx, removeMemberProposal1_Message + " - Alice voteYes(2)");
+printTxData("removeMemberProposal1_1Tx", removeMemberProposal1_1Tx);
+printTxData("removeMemberProposal1_2Tx", removeMemberProposal1_2Tx);
 printClubContractDetails();
 printTokenContractDetails();
 console.log("RESULT: ");
