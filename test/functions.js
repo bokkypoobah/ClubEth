@@ -431,12 +431,12 @@ function printClubContractDetails() {
     });
     etherDepositedEvents.stopWatching();
 
-    var etherPaidEvents = contract.EtherPaid({}, { fromBlock: clubFromBlock, toBlock: latestBlock });
+    var etherTransferredEvents = contract.EtherTransferred({}, { fromBlock: clubFromBlock, toBlock: latestBlock });
     i = 0;
-    etherPaidEvents.watch(function (error, result) {
-      console.log("RESULT: EtherPaid " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
+    etherTransferredEvents.watch(function (error, result) {
+      console.log("RESULT: EtherTransferred " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
     });
-    etherPaidEvents.stopWatching();
+    etherTransferredEvents.stopWatching();
 
     clubFromBlock = latestBlock + 1;
   }
