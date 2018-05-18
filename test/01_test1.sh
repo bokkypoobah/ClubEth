@@ -308,6 +308,31 @@ printTokenContractDetails();
 console.log("RESULT: ");
 
 
+// -----------------------------------------------------------------------------
+var mintTokensProposal1_Message = "Mint Tokens";
+// -----------------------------------------------------------------------------
+console.log("RESULT: ----- " + mintTokensProposal1_Message + " -----");
+var mintTokensProposal1_1Tx = club.proposeMintTokens("Mint tokens Alice", aliceAccount, new BigNumber("100000").shift(18), {from: aliceAccount, gas: 500000, gasPrice: defaultGasPrice});
+while (txpool.status.pending > 0) {
+}
+var mintTokensProposal1_2Tx = club.voteYes(3, {from: carolAccount, gas: 500000, gasPrice: defaultGasPrice});
+while (txpool.status.pending > 0) {
+}
+// var mintTokensProposal1_3Tx = club.voteYes(3, {from: carolAccount, gas: 500000, gasPrice: defaultGasPrice});
+// while (txpool.status.pending > 0) {
+// }
+printBalances();
+failIfTxStatusError(mintTokensProposal1_1Tx, mintTokensProposal1_Message + " - Alice proposeMintTokens(Alice, 100000 tokens)");
+failIfTxStatusError(mintTokensProposal1_2Tx, mintTokensProposal1_Message + " - Carol voteYes(3)");
+// failIfTxStatusError(mintTokensProposal1_2Tx, mintTokensProposal1_Message + " - Carol voteYes(3)");
+printTxData("mintTokensProposal1_1Tx", mintTokensProposal1_1Tx);
+printTxData("mintTokensProposal1_2Tx", mintTokensProposal1_2Tx);
+// printTxData("mintTokensProposal1_3Tx", mintTokensProposal1_3Tx);
+printClubContractDetails();
+printTokenContractDetails();
+console.log("RESULT: ");
+
+
 
 exit;
 

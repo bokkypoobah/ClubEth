@@ -332,6 +332,24 @@ library Proposals {
         proposalId = self.proposals.length - 1;
         emit NewProposal(proposalId, proposal.proposalType, msg.sender);
     }
+    function proposeMintTokens(Data storage self, string description, address tokenOwner, uint amount) public returns (uint proposalId) {
+        Proposal memory proposal = Proposal({
+            proposalType: ProposalType.MintTokens,
+            proposer: msg.sender,
+            description: description,
+            address1: tokenOwner,
+            address2: address(0),
+            amount: amount,
+            votedNo: 0,
+            votedYes: 0,
+            initiated: now,
+            closed: 0,
+            pass: false
+        });
+        self.proposals.push(proposal);
+        proposalId = self.proposals.length - 1;
+        emit NewProposal(proposalId, proposal.proposalType, msg.sender);
+    }
     function proposeEtherTransfer(Data storage self, string description, address recipient, uint amount) public returns (uint proposalId) {
         require(address(this).balance >= amount);
         Proposal memory proposal = Proposal({
@@ -401,6 +419,9 @@ library Proposals {
     }
     function getAmount(Data storage self, uint proposalId) public view returns (uint) {
         return self.proposals[proposalId].amount;
+    }
+    function getInitiated(Data storage self, uint proposalId) public view returns (uint) {
+        return self.proposals[proposalId].initiated;
     }
     function isClosed(Data storage self, uint proposalId) public view returns (bool) {
         self.proposals[proposalId].closed;
@@ -479,18 +500,23 @@ contract Club {
     function setMemberName(string memberName) public {
         members.setName(msg.sender, memberName);
     }
-    function proposeAddMember(string memberName, address memberAddress) public onlyMember {
-        uint proposalId = proposals.proposeAddMember(memberName, memberAddress);
-        proposals.vote(proposalId, true, members.length(), getQuorum(now, now), requiredMajority);
+    function proposeAddMember(string memberName, address memberAddress) public onlyMember returns (uint proposalId) {
+        proposalId = proposals.proposeAddMember(memberName, memberAddress);
+        // proposals.vote(proposalId, true, members.length(), getQuorum(now, now), requiredMajority);
         vote(proposalId, true);
     }
-    function proposeRemoveMember(string description, address memberAddress) public onlyMember {
-        uint proposalId = proposals.proposeRemoveMember(description, memberAddress);
-        proposals.vote(proposalId, true, members.length(), getQuorum(now, now), requiredMajority);
+    function proposeRemoveMember(string description, address memberAddress) public onlyMember returns (uint proposalId) {
+        proposalId = proposals.proposeRemoveMember(description, memberAddress);
+        // proposals.vote(proposalId, true, members.length(), getQuorum(now, now), requiredMajority);
         vote(proposalId, true);
     }
-    function proposeEtherTransfer(string description, address recipient, uint amount) public onlyMember {
-        uint proposalId = proposals.proposeEtherTransfer(description, recipient, amount);
+    function proposeMintTokens(string description, address tokenOwner, uint amount) public onlyMember returns (uint proposalId) {
+        proposalId = proposals.proposeMintTokens(description, tokenOwner, amount);
+        // proposals.vote(proposalId, true, members.length(), getQuorum(now, now), requiredMajority);
+        vote(proposalId, true);
+    }
+    function proposeEtherTransfer(string description, address recipient, uint amount) public onlyMember returns (uint proposalId) {
+        proposalId = proposals.proposeEtherTransfer(description, recipient, amount);
         vote(proposalId, true);
     }
     function voteNo(uint proposalId) public onlyMember {
@@ -500,7 +526,7 @@ contract Club {
         vote(proposalId, true);
     }
     function vote(uint proposalId, bool yesNo) internal {
-        proposals.vote(proposalId, yesNo, members.length(), getQuorum(now, now), requiredMajority);
+        proposals.vote(proposalId, yesNo, members.length(), getQuorum(proposals.getInitiated(proposalId), now), requiredMajority);
         Proposals.ProposalType proposalType = proposals.getProposalType(proposalId);
         if (proposals.toExecute(proposalId)) {
             string memory description = proposals.getDescription(proposalId);
@@ -509,11 +535,11 @@ contract Club {
             if (proposalType == Proposals.ProposalType.AddMember) {
                 members.add(address1, description);
                 token.mint(address1, tokensForNewMembers);
-                // TODO: Log event
             } else if (proposalType == Proposals.ProposalType.RemoveMember) {
                 members.remove(address1);
                 token.burn(address1, uint(-1));
-                // TODO: Log event
+            } else if (proposalType == Proposals.ProposalType.MintTokens) {
+                token.mint(address1, amount);
             } else if (proposalType == Proposals.ProposalType.EtherTransfer) {
                 address1.transfer(amount);
                 emit EtherTransferred(proposalId, msg.sender, address1, amount);
