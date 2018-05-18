@@ -58,9 +58,9 @@ DIFFS1=`diff $SOURCEDIR/$CLUBFACTORYSOL $CLUBFACTORYSOL`
 echo "--- Differences $SOURCEDIR/$CLUBFACTORYSOL $CLUBFACTORYSOL ---" | tee -a $TEST1OUTPUT
 echo "$DIFFS1" | tee -a $TEST1OUTPUT
 
-solc_0.4.23 --version | tee -a $TEST1OUTPUT
+solc_0.4.24 --version | tee -a $TEST1OUTPUT
 
-echo "var clubFactoryOutput=`solc_0.4.23 --optimize --pretty-json --combined-json abi,bin,interface $CLUBFACTORYSOL`;" > $CLUBFACTORYJS
+echo "var clubFactoryOutput=`solc_0.4.24 --optimize --pretty-json --combined-json abi,bin,interface $CLUBFACTORYSOL`;" > $CLUBFACTORYJS
 
 
 geth --verbosity 3 attach $GETHATTACHPOINT << EOF | tee -a $TEST1OUTPUT
@@ -157,9 +157,9 @@ console.log("RESULT: ");
 var deployClubFactoryMessage = "Deploy ClubFactory";
 // -----------------------------------------------------------------------------
 console.log("RESULT: ----- " + deployClubFactoryMessage + " -----");
-console.log("RESULT: clubFactoryBin='" + clubFactoryBin + "'");
+// console.log("RESULT: clubFactoryBin='" + clubFactoryBin + "'");
 var newClubFactoryBin = clubFactoryBin.replace(/__ClubFactory\.sol\:Members_______________/g, membersLibAddress.substring(2, 42)).replace(/__ClubFactory\.sol\:Proposals_____________/g, proposalsLibAddress.substring(2, 42));
-console.log("RESULT: newClubFactoryBin='" + newClubFactoryBin + "'");
+// console.log("RESULT: newClubFactoryBin='" + newClubFactoryBin + "'");
 var clubFactoryContract = web3.eth.contract(clubFactoryAbi);
 // console.log(JSON.stringify(clubFactoryAbi));
 // console.log(newClubFactoryBin);
@@ -315,19 +315,44 @@ console.log("RESULT: ----- " + mintTokensProposal1_Message + " -----");
 var mintTokensProposal1_1Tx = club.proposeMintTokens("Mint tokens Alice", aliceAccount, new BigNumber("100000").shift(18), {from: aliceAccount, gas: 500000, gasPrice: defaultGasPrice});
 while (txpool.status.pending > 0) {
 }
-var mintTokensProposal1_2Tx = club.voteYes(3, {from: carolAccount, gas: 500000, gasPrice: defaultGasPrice});
+var mintTokensProposal1_2Tx = club.voteYes(3, {from: bobAccount, gas: 500000, gasPrice: defaultGasPrice});
 while (txpool.status.pending > 0) {
 }
-// var mintTokensProposal1_3Tx = club.voteYes(3, {from: carolAccount, gas: 500000, gasPrice: defaultGasPrice});
-// while (txpool.status.pending > 0) {
-// }
+var mintTokensProposal1_3Tx = club.voteYes(3, {from: carolAccount, gas: 500000, gasPrice: defaultGasPrice});
+while (txpool.status.pending > 0) {
+}
 printBalances();
 failIfTxStatusError(mintTokensProposal1_1Tx, mintTokensProposal1_Message + " - Alice proposeMintTokens(Alice, 100000 tokens)");
-failIfTxStatusError(mintTokensProposal1_2Tx, mintTokensProposal1_Message + " - Carol voteYes(3)");
-// failIfTxStatusError(mintTokensProposal1_2Tx, mintTokensProposal1_Message + " - Carol voteYes(3)");
+passIfTxStatusError(mintTokensProposal1_2Tx, mintTokensProposal1_Message + " - Bob voteYes(3) - Expecting failure as not a member");
+failIfTxStatusError(mintTokensProposal1_3Tx, mintTokensProposal1_Message + " - Carol voteYes(3)");
 printTxData("mintTokensProposal1_1Tx", mintTokensProposal1_1Tx);
 printTxData("mintTokensProposal1_2Tx", mintTokensProposal1_2Tx);
-// printTxData("mintTokensProposal1_3Tx", mintTokensProposal1_3Tx);
+printTxData("mintTokensProposal1_3Tx", mintTokensProposal1_3Tx);
+printClubContractDetails();
+printTokenContractDetails();
+console.log("RESULT: ");
+
+
+// -----------------------------------------------------------------------------
+var burnTokensProposal1_Message = "Burn Tokens";
+// -----------------------------------------------------------------------------
+console.log("RESULT: ----- " + burnTokensProposal1_Message + " -----");
+var burnTokensProposal1_1Tx = club.proposeBurnTokens("Burn tokens Alice", aliceAccount, new BigNumber("50000").shift(18), {from: aliceAccount, gas: 500000, gasPrice: defaultGasPrice});
+while (txpool.status.pending > 0) {
+}
+var burnTokensProposal1_2Tx = club.voteYes(4, {from: bobAccount, gas: 500000, gasPrice: defaultGasPrice});
+while (txpool.status.pending > 0) {
+}
+var burnTokensProposal1_3Tx = club.voteYes(4, {from: carolAccount, gas: 500000, gasPrice: defaultGasPrice});
+while (txpool.status.pending > 0) {
+}
+printBalances();
+failIfTxStatusError(burnTokensProposal1_1Tx, burnTokensProposal1_Message + " - Alice proposeBurnTokens(Alice, 100000 tokens)");
+passIfTxStatusError(burnTokensProposal1_2Tx, burnTokensProposal1_Message + " - Bob voteYes(4) - Expecting failure as not a member");
+failIfTxStatusError(burnTokensProposal1_3Tx, burnTokensProposal1_Message + " - Carol voteYes(4)");
+printTxData("burnTokensProposal1_1Tx", burnTokensProposal1_1Tx);
+printTxData("burnTokensProposal1_2Tx", burnTokensProposal1_2Tx);
+printTxData("burnTokensProposal1_3Tx", burnTokensProposal1_3Tx);
 printClubContractDetails();
 printTokenContractDetails();
 console.log("RESULT: ");

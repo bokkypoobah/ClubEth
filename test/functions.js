@@ -1,6 +1,6 @@
-// ETH/USD 17 May 2018 02:44 AEDT from CMC and ethgasstation.info (was down)
-var ethPriceUSD = 692.74;
-var defaultGasPrice = web3.toWei(6, "gwei");
+// ETH/USD 19 May 2018 00:14 AEDT from CMC and ethgasstation.info
+var ethPriceUSD = 675.71;
+var defaultGasPrice = web3.toWei(16, "gwei");
 
 // -----------------------------------------------------------------------------
 // Accounts

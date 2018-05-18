@@ -38,8 +38,8 @@ contract ClubTokenInterface is ERC20Interface {
     function name() public view returns (string);
     function decimals() public view returns (uint8);
     function approveAndCall(address spender, uint tokens, bytes data) public returns (bool success);
-    function mint(address addr, uint tokens) public returns (bool success);
-    function burn(address addr, uint tokens) public returns (bool success);
+    function mint(address tokenOwner, uint tokens) public returns (bool success);
+    function burn(address tokenOwner, uint tokens) public returns (bool success);
 }
 
 
@@ -171,19 +171,19 @@ contract ClubToken is ClubTokenInterface, Owned {
         ApproveAndCallFallBack(spender).receiveApproval(msg.sender, tokens, this, data);
         return true;
     }
-    function mint(address addr, uint tokens) public onlyOwner returns (bool success) {
-        balances[addr] = balances[addr].add(tokens);
+    function mint(address tokenOwner, uint tokens) public onlyOwner returns (bool success) {
+        balances[tokenOwner] = balances[tokenOwner].add(tokens);
         _totalSupply = _totalSupply.add(tokens);
-        emit Transfer(address(0), addr, tokens);
+        emit Transfer(address(0), tokenOwner, tokens);
         return true;
     }
-    function burn(address addr, uint tokens) public onlyOwner returns (bool success) {
-        if (tokens > balances[addr]) {
-            tokens = balances[addr];
+    function burn(address tokenOwner, uint tokens) public onlyOwner returns (bool success) {
+        if (tokens > balances[tokenOwner]) {
+            tokens = balances[tokenOwner];
         }
         _totalSupply = _totalSupply.sub(tokens);
-        balances[addr] = 0;
-        emit Transfer(addr, address(0), tokens);
+        balances[tokenOwner] = 0;
+        emit Transfer(tokenOwner, address(0), tokens);
         return true;
     }
     function () public payable {
@@ -335,6 +335,24 @@ library Proposals {
     function proposeMintTokens(Data storage self, string description, address tokenOwner, uint amount) public returns (uint proposalId) {
         Proposal memory proposal = Proposal({
             proposalType: ProposalType.MintTokens,
+            proposer: msg.sender,
+            description: description,
+            address1: tokenOwner,
+            address2: address(0),
+            amount: amount,
+            votedNo: 0,
+            votedYes: 0,
+            initiated: now,
+            closed: 0,
+            pass: false
+        });
+        self.proposals.push(proposal);
+        proposalId = self.proposals.length - 1;
+        emit NewProposal(proposalId, proposal.proposalType, msg.sender);
+    }
+    function proposeBurnTokens(Data storage self, string description, address tokenOwner, uint amount) public returns (uint proposalId) {
+        Proposal memory proposal = Proposal({
+            proposalType: ProposalType.BurnTokens,
             proposer: msg.sender,
             description: description,
             address1: tokenOwner,
@@ -502,17 +520,18 @@ contract Club {
     }
     function proposeAddMember(string memberName, address memberAddress) public onlyMember returns (uint proposalId) {
         proposalId = proposals.proposeAddMember(memberName, memberAddress);
-        // proposals.vote(proposalId, true, members.length(), getQuorum(now, now), requiredMajority);
         vote(proposalId, true);
     }
     function proposeRemoveMember(string description, address memberAddress) public onlyMember returns (uint proposalId) {
         proposalId = proposals.proposeRemoveMember(description, memberAddress);
-        // proposals.vote(proposalId, true, members.length(), getQuorum(now, now), requiredMajority);
         vote(proposalId, true);
     }
     function proposeMintTokens(string description, address tokenOwner, uint amount) public onlyMember returns (uint proposalId) {
         proposalId = proposals.proposeMintTokens(description, tokenOwner, amount);
-        // proposals.vote(proposalId, true, members.length(), getQuorum(now, now), requiredMajority);
+        vote(proposalId, true);
+    }
+    function proposeBurnTokens(string description, address tokenOwner, uint amount) public onlyMember returns (uint proposalId) {
+        proposalId = proposals.proposeBurnTokens(description, tokenOwner, amount);
         vote(proposalId, true);
     }
     function proposeEtherTransfer(string description, address recipient, uint amount) public onlyMember returns (uint proposalId) {
@@ -540,6 +559,8 @@ contract Club {
                 token.burn(address1, uint(-1));
             } else if (proposalType == Proposals.ProposalType.MintTokens) {
                 token.mint(address1, amount);
+            } else if (proposalType == Proposals.ProposalType.BurnTokens) {
+                token.burn(address1, amount);
             } else if (proposalType == Proposals.ProposalType.EtherTransfer) {
                 address1.transfer(amount);
                 emit EtherTransferred(proposalId, msg.sender, address1, amount);
@@ -548,6 +569,7 @@ contract Club {
         }
     }
 
+    /*
     function setToken(address clubToken) internal {
         emit TokenUpdated(address(token), clubToken);
         token = ClubTokenInterface(clubToken);
@@ -563,6 +585,7 @@ contract Club {
     function removeMember(address memberAddress) internal {
         members.remove(memberAddress);
     }
+    */
 
     function numberOfMembers() public view returns (uint) {
         return members.length();
