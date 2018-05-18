@@ -8,7 +8,7 @@ pragma solidity ^0.4.23;
 // Enjoy.
 //
 // (c) BokkyPooBah / Bok Consulting Pty Ltd and
-// the Babysitters Club DApp Project and 2018. The MIT Licence.
+// the ClubEth DApp Project - 2018. The MIT Licence.
 // ----------------------------------------------------------------------------
 
 
