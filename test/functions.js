@@ -340,15 +340,11 @@ function printClubContractDetails() {
     for (i = 0; i < contract.numberOfMembers(); i++) {
       var member = contract.getMemberByIndex(i);
       var data = contract.getMemberData(member);
-      // console.log("RESULT: club.member[" + i + "]=" + member + " " + JSON.stringify(data));
       console.log("RESULT: club.member[" + i + "]=" + member + " [" + data[0] + ", " + data[1] + ", '" + data[2] + "']");
     }
     console.log("RESULT: club.numberOfProposals=" + contract.numberOfProposals());
     for (i = 0; i < contract.numberOfProposals(); i++) {
-      var proposalData1 = contract.getProposalData1(i);
-      var proposalData2 = contract.getProposalData2(i);
-      var proposalData3 = contract.getProposalData3(i);
-      console.log("RESULT: club.getProposal[" + i + "]=" + JSON.stringify(proposalData1) + " " + JSON.stringify(proposalData2) + " " + JSON.stringify(proposalData3));
+      console.log("RESULT: club.getProposal[" + i + "]=" + JSON.stringify(contract.getProposal(i)));
     }
     console.log("RESULT: club.quorum=" + contract.quorum() + "%");
     console.log("RESULT: club.quorumDecayPerWeek=" + contract.quorumDecayPerWeek() + "%");
@@ -368,12 +364,8 @@ function printClubContractDetails() {
     i = 0;
     newProposalEvents.watch(function (error, result) {
       console.log("RESULT: NewProposal " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
-      var proposalData1 = contract.getProposalData1(result.args.proposalId);
-      var proposalData2 = contract.getProposalData2(result.args.proposalId);
-      var proposalData3 = contract.getProposalData3(result.args.proposalId);
-      console.log("RESULT: - proposalData1=" + JSON.stringify(proposalData1));
-      console.log("RESULT: - proposalData2=" + JSON.stringify(proposalData2));
-      console.log("RESULT: - proposalData3=" + JSON.stringify(proposalData3));
+      var proposal = contract.getProposal(result.args.proposalId);
+      console.log("RESULT: - proposal=" + JSON.stringify(proposal));
     });
     newProposalEvents.stopWatching();
 

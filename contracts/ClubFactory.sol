@@ -435,7 +435,7 @@ contract Club {
 
     ClubTokenInterface public token;
     Members.Data members;
-    Proposals.Data proposals;
+    Proposals.Data public proposals;
     bool public initialised;
 
     uint public tokensForNewMembers;
@@ -562,20 +562,14 @@ contract Club {
     function numberOfProposals() public view returns (uint) {
         return proposals.length();
     }
-    function getProposalData1(uint proposalId) public view returns (uint _proposalType, address _proposer, string _description) {
+    function getProposal(uint proposalId) public view returns (uint _proposalType, address _proposer, string _description, address _address1, address _address2, uint _amount, uint _votedNo, uint _votedYes, uint _initiated, uint _closed) {
         Proposals.Proposal memory proposal = proposals.proposals[proposalId];
         _proposalType = uint(proposal.proposalType);
         _proposer = proposal.proposer;
         _description = proposal.description;
-    }
-    function getProposalData2(uint proposalId) public view returns (address _address1, address _address2, uint _amount) {
-        Proposals.Proposal memory proposal = proposals.proposals[proposalId];
         _address1 = proposal.address1;
         _address2 = proposal.address2;
         _amount = proposal.amount;
-    }
-    function getProposalData3(uint proposalId) public view returns (uint _votedNo, uint _votedYes, uint _initiated, uint _closed) {
-        Proposals.Proposal memory proposal = proposals.proposals[proposalId];
         _votedNo = proposal.votedNo;
         _votedYes = proposal.votedYes;
         _initiated = proposal.initiated;
