@@ -67,15 +67,15 @@ geth --verbosity 3 attach $GETHATTACHPOINT << EOF | tee -a $TEST1OUTPUT
 loadScript("$CLUBFACTORYJS");
 loadScript("functions.js");
 
-var clubFactoryAbi = JSON.parse(clubFactoryOutput.contracts["$CLUBFACTORYSOL:ClubFactory"].abi);
-var clubFactoryBin = "0x" + clubFactoryOutput.contracts["$CLUBFACTORYSOL:ClubFactory"].bin;
-var tokenAbi = JSON.parse(clubFactoryOutput.contracts["$CLUBFACTORYSOL:ClubToken"].abi);
+var clubFactoryAbi = JSON.parse(clubFactoryOutput.contracts["$CLUBFACTORYSOL:ClubEthFactory"].abi);
+var clubFactoryBin = "0x" + clubFactoryOutput.contracts["$CLUBFACTORYSOL:ClubEthFactory"].bin;
+var tokenAbi = JSON.parse(clubFactoryOutput.contracts["$CLUBFACTORYSOL:ClubEthToken"].abi);
 var membersLibAbi = JSON.parse(clubFactoryOutput.contracts["$CLUBFACTORYSOL:Members"].abi);
 var membersLibBin = "0x" + clubFactoryOutput.contracts["$CLUBFACTORYSOL:Members"].bin;
 var proposalsLibAbi = JSON.parse(clubFactoryOutput.contracts["$CLUBFACTORYSOL:Proposals"].abi);
 var proposalsLibBin = "0x" + clubFactoryOutput.contracts["$CLUBFACTORYSOL:Proposals"].bin;
-var clubAbi = JSON.parse(clubFactoryOutput.contracts["$CLUBFACTORYSOL:Club"].abi);
-var clubBin = "0x" + clubFactoryOutput.contracts["$CLUBFACTORYSOL:Club"].bin;
+var clubAbi = JSON.parse(clubFactoryOutput.contracts["$CLUBFACTORYSOL:ClubEth"].abi);
+var clubBin = "0x" + clubFactoryOutput.contracts["$CLUBFACTORYSOL:ClubEth"].bin;
 
 // console.log("DATA: clubFactoryAbi=" + JSON.stringify(clubFactoryAbi));
 // console.log("DATA: clubFactoryBin=" + JSON.stringify(clubFactoryBin));
@@ -158,7 +158,7 @@ var deployClubFactoryMessage = "Deploy ClubFactory";
 // -----------------------------------------------------------------------------
 console.log("RESULT: ----- " + deployClubFactoryMessage + " -----");
 // console.log("RESULT: clubFactoryBin='" + clubFactoryBin + "'");
-var newClubFactoryBin = clubFactoryBin.replace(/__ClubFactory\.sol\:Members_______________/g, membersLibAddress.substring(2, 42)).replace(/__ClubFactory\.sol\:Proposals_____________/g, proposalsLibAddress.substring(2, 42));
+var newClubFactoryBin = clubFactoryBin.replace(/__ClubEthFactory\.sol\:Members____________/g, membersLibAddress.substring(2, 42)).replace(/__ClubEthFactory\.sol\:Proposals__________/g, proposalsLibAddress.substring(2, 42));
 // console.log("RESULT: newClubFactoryBin='" + newClubFactoryBin + "'");
 var clubFactoryContract = web3.eth.contract(clubFactoryAbi);
 // console.log(JSON.stringify(clubFactoryAbi));
@@ -202,7 +202,7 @@ var clubContract = web3.eth.contract(clubAbi);
 // console.log(JSON.stringify(clubContract));
 var tokenContract = web3.eth.contract(tokenAbi);
 // console.log(JSON.stringify(tokenContract));
-var deployClubTx = clubFactory.deployClubContract(clubName, tokenSymbol, tokenName, tokenDecimal, memberName, tokensForNewMembers, {from: aliceAccount, gas: 4000000, gasPrice: defaultGasPrice});
+var deployClubTx = clubFactory.deployClubEthContract(clubName, tokenSymbol, tokenName, tokenDecimal, memberName, tokensForNewMembers, {from: aliceAccount, gas: 4000000, gasPrice: defaultGasPrice});
 while (txpool.status.pending > 0) {
 }
 var results = getClubAndTokenListing();

@@ -460,10 +460,10 @@ function getClubAndTokenListing() {
     var latestBlock = eth.blockNumber;
     var i;
 
-    var clubListingEvents = contract.ClubListing({}, { fromBlock: clubFactoryFromBlock, toBlock: latestBlock });
+    var clubListingEvents = contract.ClubEthListing({}, { fromBlock: clubFactoryFromBlock, toBlock: latestBlock });
     i = 0;
     clubListingEvents.watch(function (error, result) {
-      console.log("RESULT: get ClubListing " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
+      console.log("RESULT: get ClubEthListing " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
       clubs.push(result.args.clubAddress);
       tokens.push(result.args.tokenAddress);
     });
@@ -489,12 +489,12 @@ function printClubFactoryContractDetails() {
     });
     ownershipTransferredEvents.stopWatching();
 
-    var clubListingEvents = contract.ClubListing({}, { fromBlock: clubFactoryFromBlock, toBlock: latestBlock });
+    var clubEthListingEvents = contract.ClubEthListing({}, { fromBlock: clubFactoryFromBlock, toBlock: latestBlock });
     i = 0;
-    clubListingEvents.watch(function (error, result) {
-      console.log("RESULT: ClubListing " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
+    clubEthListingEvents.watch(function (error, result) {
+      console.log("RESULT: ClubEthListing " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
     });
-    clubListingEvents.stopWatching();
+    clubEthListingEvents.stopWatching();
 
     clubFactoryFromBlock = latestBlock + 1;
   }

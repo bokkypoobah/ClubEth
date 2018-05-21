@@ -3,8 +3,8 @@ PASSWORD=
 
 SOURCEDIR=../contracts
 
-CLUBFACTORYSOL=ClubFactory.sol
-CLUBFACTORYJS=ClubFactory.js
+CLUBFACTORYSOL=ClubEthFactory.sol
+CLUBFACTORYJS=ClubEthFactory.js
 
 DEPLOYMENTDATA=deploymentData.txt
 
