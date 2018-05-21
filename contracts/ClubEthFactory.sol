@@ -1,14 +1,14 @@
 pragma solidity ^0.4.23;
 
 // ----------------------------------------------------------------------------
-// Babysitters Club DApp Project
+// ClubEth.App Project
 //
 // https://github.com/bokkypoobah/ClubEth
 //
 // Enjoy.
 //
 // (c) BokkyPooBah / Bok Consulting Pty Ltd and
-// the ClubEth DApp Project - 2018. The MIT Licence.
+// the ClubEth.App Project - 2018. The MIT Licence.
 // ----------------------------------------------------------------------------
 
 
@@ -33,7 +33,7 @@ contract ERC20Interface {
 // ClubToken Interface = ERC20 + symbol + name + decimals + mint + burn
 // + approveAndCall
 // ----------------------------------------------------------------------------
-contract ClubTokenInterface is ERC20Interface {
+contract ClubEthTokenInterface is ERC20Interface {
     function symbol() public view returns (string);
     function name() public view returns (string);
     function decimals() public view returns (uint8);
