@@ -265,20 +265,25 @@ console.log("RESULT: ----- " + addMemberProposal2_Message + " -----");
 var addMemberProposal2_1Tx = club.proposeAddMember("Carol", carolAccount, {from: aliceAccount, gas: 500000, gasPrice: defaultGasPrice});
 while (txpool.status.pending > 0) {
 }
+console.log("RESULT: Additional votes required = " + club.getAdditionalVotesRequired(1));
 var addMemberProposal2_2Tx = club.voteNo(1, {from: aliceAccount, gas: 500000, gasPrice: defaultGasPrice});
 while (txpool.status.pending > 0) {
 }
-var addMemberProposal2_3Tx = club.voteYes(1, {from: aliceAccount, gas: 500000, gasPrice: defaultGasPrice});
+console.log("RESULT: Additional votes required = " + club.getAdditionalVotesRequired(1));
+var addMemberProposal2_3Tx = club.voteYes(1, {from: bobAccount, gas: 500000, gasPrice: defaultGasPrice});
 while (txpool.status.pending > 0) {
 }
-var addMemberProposal2_4Tx = club.voteYes(1, {from: bobAccount, gas: 500000, gasPrice: defaultGasPrice});
+console.log("RESULT: Additional votes required = " + club.getAdditionalVotesRequired(1));
+var addMemberProposal2_4Tx = club.voteYes(1, {from: aliceAccount, gas: 500000, gasPrice: defaultGasPrice});
 while (txpool.status.pending > 0) {
 }
+console.log("RESULT: Additional votes required = " + club.getAdditionalVotesRequired(1));
+
 printBalances();
 failIfTxStatusError(addMemberProposal2_1Tx, addMemberProposal2_Message + " - Alice addMemberProposal(ac4, 'Carol')");
 failIfTxStatusError(addMemberProposal2_2Tx, addMemberProposal2_Message + " - Alice voteNo(1)");
-failIfTxStatusError(addMemberProposal2_3Tx, addMemberProposal2_Message + " - Alice voteYes(1)");
-failIfTxStatusError(addMemberProposal2_4Tx, addMemberProposal2_Message + " - Bob voteYes(1)");
+failIfTxStatusError(addMemberProposal2_3Tx, addMemberProposal2_Message + " - Bob voteYes(1)");
+failIfTxStatusError(addMemberProposal2_4Tx, addMemberProposal2_Message + " - Alice voteYes(1)");
 printTxData("addMemberProposal2_1Tx", addMemberProposal2_1Tx);
 printTxData("addMemberProposal2_2Tx", addMemberProposal2_2Tx);
 printTxData("addMemberProposal2_3Tx", addMemberProposal2_3Tx);
@@ -287,6 +292,7 @@ printClubContractDetails();
 printTokenContractDetails();
 console.log("RESULT: ");
 
+exit;
 
 // -----------------------------------------------------------------------------
 var removeMemberProposal1_Message = "Remove Member Proposal #1";

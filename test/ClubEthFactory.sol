@@ -423,6 +423,21 @@ library Proposals {
             emit VoteResult(proposalId, proposal.pass, voteCount, quorum, membersLength, yesPercent, requiredMajority);
         }
     }
+    function getAdditionalVotesRequired(Data storage self, uint proposalId, uint membersLength, uint quorum, uint requiredMajority) public view returns (uint){
+        Proposal storage proposal = self.proposals[proposalId];
+        require(proposal.closed == 0);        
+        uint voteCount = proposal.votedYes + proposal.votedNo;
+        uint requiredVotedYes = voteCount * requiredMajority / 100;
+
+        if (voteCount * 100 >= quorum * membersLength) {
+            // Should we use SafeMath for the following?
+            return requiredVotedYes - proposal.votedYes;            
+        }
+        else {
+            // Use 999 to denote the quorum hasn't been met
+            return 999;
+        }
+    }    
     // function get(Data storage self, uint proposalId) public view returns (Proposal proposal) {
     //    return self.proposals[proposalId];
     // }
@@ -565,6 +580,11 @@ contract ClubEth {
             proposals.close(proposalId);
         }
     }
+    function getAdditionalVotesRequired(uint proposalId) public view returns (uint){
+        uint additionalVotes = proposals.getAdditionalVotesRequired(proposalId, members.length(), getQuorum(proposals.getInitiated(proposalId), now), requiredMajority);
+        return additionalVotes;
+    }
+
 
     /*
     function setToken(address clubToken) internal {
