@@ -423,21 +423,42 @@ library Proposals {
             emit VoteResult(proposalId, proposal.pass, voteCount, quorum, membersLength, yesPercent, requiredMajority);
         }
     }
-    function getAdditionalVotesRequired(Data storage self, uint proposalId, uint membersLength, uint quorum, uint requiredMajority) public view returns (uint){
-        Proposal storage proposal = self.proposals[proposalId];
-        require(proposal.closed == 0);        
-        uint voteCount = proposal.votedYes + proposal.votedNo;
-        uint requiredVotedYes = voteCount * requiredMajority / 100;
 
-        if (voteCount * 100 >= quorum * membersLength) {
-            // Should we use SafeMath for the following?
-            return requiredVotedYes - proposal.votedYes;            
-        }
-        else {
-            // Use 999 to denote the quorum hasn't been met
-            return 999;
-        }
+    // Issues:
+    // 1. quorumReached is not accurate after the vote passes and accepts a new member
+    //    Unless storing it as a storage variable, we can't accurately track the status before the proposal is executed
+    // 2. To calculate required additional votes we need to apply a ceiling function which consumes gas
+    function getVotingStatus(Data storage self, uint proposalId, uint membersLength, uint quorum, uint requiredMajority) public view returns (bool, bool, uint, uint){
+        Proposal storage proposal = self.proposals[proposalId];
+        bool isOpen = (proposal.closed == 0);
+        uint voteCount = proposal.votedYes + proposal.votedNo;
+
+        bool quorumReached = (voteCount * 100 >= quorum * membersLength);
+        uint yesPercent = proposal.votedYes * 100 / voteCount;
+
+        // uint totalYesRequired = voteCount * requiredMajority / 100;
+        // uint votedYes = proposal.votedYes;
+
+        return (isOpen, quorumReached, requiredMajority, yesPercent);
     }    
+
+
+    
+    // function getAdditionalVotesRequired(Data storage self, uint proposalId, uint membersLength, uint quorum, uint requiredMajority) public view returns (uint){
+    //     Proposal storage proposal = self.proposals[proposalId];
+    //     require(proposal.closed == 0);        
+    //     uint voteCount = proposal.votedYes + proposal.votedNo;
+    //     uint requiredVotedYes = voteCount * requiredMajority / 100;
+
+    //     if (voteCount * 100 >= quorum * membersLength) {
+    //         // Should we use SafeMath for the following?
+    //         return requiredVotedYes - proposal.votedYes;            
+    //     }
+    //     else {
+    //         // Use 999 to denote the quorum hasn't been met
+    //         return 999;
+    //     }
+    // }    
     // function get(Data storage self, uint proposalId) public view returns (Proposal proposal) {
     //    return self.proposals[proposalId];
     // }
@@ -580,9 +601,9 @@ contract ClubEth {
             proposals.close(proposalId);
         }
     }
-    function getAdditionalVotesRequired(uint proposalId) public view returns (uint){
-        uint additionalVotes = proposals.getAdditionalVotesRequired(proposalId, members.length(), getQuorum(proposals.getInitiated(proposalId), now), requiredMajority);
-        return additionalVotes;
+
+    function getVotingStatus(uint proposalId) public view returns (bool, bool, uint, uint){
+        return proposals.getVotingStatus(proposalId, members.length(), getQuorum(proposals.getInitiated(proposalId), now), requiredMajority);
     }
 
 

@@ -436,6 +436,14 @@ function printClubContractDetails() {
   }
 }
 
+function getVotingStatus() {
+  console.log("RESULT: Votes open = " + club.getVotingStatus(1)[0] +
+    " | Quorum reached = " + club.getVotingStatus(1)[1] + 
+    " | Required majority = " + club.getVotingStatus(1)[2] + 
+    " | Yes percent = " + club.getVotingStatus(1)[3]);
+    // " | Total yes votes required = " + club.getVotingStatus(1)[4] +
+    // " | Yes votes = " + club.getVotingStatus(1)[5]);  
+}
 
 // -----------------------------------------------------------------------------
 // ClubFactory Contract

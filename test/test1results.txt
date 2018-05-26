@@ -32,19 +32,19 @@
  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
 10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #10
 11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11
-12 0x4ad3ae36d5ca6ede210385b8357a566a5ecea272        0.000000000000000000           0.000000000000000000 Members Library
+12 0xd8dc1b690f36cf38e8032d751343c9e4df9bdf87        0.000000000000000000           0.000000000000000000 Members Library
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
                                                                                     0.000000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
 PASS Deploy Members Library
-membersLibTx status=0x1 Success gas=6000000 gasUsed=610866 costETH=0.009773856 costUSD=6.60429223776 @ ETH/USD=675.71 gasPrice=16 gwei block=1132 txIx=0 txId=0x77cef9376d8e26e79d24bd04c0211feb3a99edada3361695c90701d14c57bf54 @ 1526993970 Tue, 22 May 2018 12:59:30 UTC
+membersLibTx status=0x1 Success gas=6000000 gasUsed=610866 costETH=0.009773856 costUSD=6.60429223776 @ ETH/USD=675.71 gasPrice=16 gwei block=22532 txIx=0 txId=0x7883fe6f69aef2a4a6a23e9da83c77c4fb5d1d9eec46f825a72a581759fd7594 @ 1527321358 Sat, 26 May 2018 07:55:58 UTC
 
 ----- Deploy Proposals Library -----
  # Account                                             EtherBalanceChange                          Token Name
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
- 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.028499056000000000           0.000000000000000000 Account #0 - Miner
- 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.028499056000000000           0.000000000000000000 Account #1 - Contract Owner
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.028675200000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.028675200000000000           0.000000000000000000 Account #1 - Contract Owner
  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Alice
  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Bob
  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Carol
@@ -55,20 +55,20 @@ membersLibTx status=0x1 Success gas=6000000 gasUsed=610866 costETH=0.009773856 c
  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
 10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #10
 11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11
-12 0x4ad3ae36d5ca6ede210385b8357a566a5ecea272        0.000000000000000000           0.000000000000000000 Members Library
-13 0x32a391d90fed661cc45de0590654bef58f9d6c29        0.000000000000000000           0.000000000000000000 Proposals Library
+12 0xd8dc1b690f36cf38e8032d751343c9e4df9bdf87        0.000000000000000000           0.000000000000000000 Members Library
+13 0x611d3a5ac803dfb0acc68264d83538fef62fc5f8        0.000000000000000000           0.000000000000000000 Proposals Library
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
                                                                                     0.000000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
 PASS Deploy Proposals Library
-proposalsLibTx status=0x1 Success gas=6000000 gasUsed=1170325 costETH=0.0187252 costUSD=12.652804892 @ ETH/USD=675.71 gasPrice=16 gwei block=1134 txIx=0 txId=0xf9de818b5e139f75a3ed4886ddecf285dbc5f3439334b4c59bee577b22a6b507 @ 1526993972 Tue, 22 May 2018 12:59:32 UTC
+proposalsLibTx status=0x1 Success gas=6000000 gasUsed=1181334 costETH=0.018901344 costUSD=12.77182715424 @ ETH/USD=675.71 gasPrice=16 gwei block=22534 txIx=0 txId=0x9bd115f028e0e6117a268044ac77f6d1201043c79f5f8e99ca5a6426951b8b7a @ 1527321360 Sat, 26 May 2018 07:56:00 UTC
 
 ----- Deploy ClubFactory -----
  # Account                                             EtherBalanceChange                          Token Name
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
- 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.100748256000000000           0.000000000000000000 Account #0 - Miner
- 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.100748256000000000           0.000000000000000000 Account #1 - Contract Owner
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.101215216000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.101215216000000000           0.000000000000000000 Account #1 - Contract Owner
  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Alice
  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Bob
  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Carol
@@ -79,29 +79,29 @@ proposalsLibTx status=0x1 Success gas=6000000 gasUsed=1170325 costETH=0.0187252 
  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
 10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #10
 11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11
-12 0x4ad3ae36d5ca6ede210385b8357a566a5ecea272        0.000000000000000000           0.000000000000000000 Members Library
-13 0x32a391d90fed661cc45de0590654bef58f9d6c29        0.000000000000000000           0.000000000000000000 Proposals Library
-14 0x938d22c583154e944cc0f6e83749261d88bf01f0        0.000000000000000000           0.000000000000000000 ClubFactory
+12 0xd8dc1b690f36cf38e8032d751343c9e4df9bdf87        0.000000000000000000           0.000000000000000000 Members Library
+13 0x611d3a5ac803dfb0acc68264d83538fef62fc5f8        0.000000000000000000           0.000000000000000000 Proposals Library
+14 0x24ad1371437980d21a8ebf2e46a824b860a6d47c        0.000000000000000000           0.000000000000000000 ClubFactory
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
                                                                                     0.000000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
 PASS Deploy ClubFactory
-clubFactoryTx status=0x1 Success gas=6000000 gasUsed=4515575 costETH=0.0722492 costUSD=48.819506932 @ ETH/USD=675.71 gasPrice=16 gwei block=1136 txIx=0 txId=0x25eb1a13eaff463d9d15d296831736a5f985dac84273d13209ab0e5a90d2ca9b @ 1526993974 Tue, 22 May 2018 12:59:34 UTC
-clubFactoryContractAddress=0x938d22c583154e944cc0f6e83749261d88bf01f0
+clubFactoryTx status=0x1 Success gas=6000000 gasUsed=4533751 costETH=0.072540016 costUSD=49.01601421136 @ ETH/USD=675.71 gasPrice=16 gwei block=22536 txIx=0 txId=0x8598e1900ac75dfb2bab0a6c2b7c62fc282628e302487b227c08448227ce4887 @ 1527321362 Sat, 26 May 2018 07:56:02 UTC
+clubFactoryContractAddress=0x24ad1371437980d21a8ebf2e46a824b860a6d47c
 clubFactory.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 clubFactory.newOwner=0x0000000000000000000000000000000000000000
 
 ----- Deploy Club Contract -----
-clubFactoryContractAddress=0x938d22c583154e944cc0f6e83749261d88bf01f0
-get ClubEthListing 0 #1138 {"clubAddress":"0x87a288467d91f3817eb089982c5d9463a85b82d3","clubEthName":"Babysitters Club","memberName":"0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","tokenAddress":"0x10794bcede3f0d265f965bf35018b8df414e4c46","tokenDecimals":"18","tokenName":"Sit Minutes","tokenSymbol":"SITS","tokensForNewMembers":"1.2e+22"}
-clubs=#1 ["0x87a288467d91f3817eb089982c5d9463a85b82d3"]
-tokens=#1 ["0x10794bcede3f0d265f965bf35018b8df414e4c46"]
+clubFactoryContractAddress=0x24ad1371437980d21a8ebf2e46a824b860a6d47c
+get ClubEthListing 0 #22538 {"clubAddress":"0x5ffe5f4d609fe991d3b61ff7abf0dcf113c99282","clubEthName":"Babysitters Club","memberName":"0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","tokenAddress":"0x9f4e0b54d87beb4c585d48a06d28a831756dae22","tokenDecimals":"18","tokenName":"Sit Minutes","tokenSymbol":"SITS","tokensForNewMembers":"1.2e+22"}
+clubs=#1 ["0x5ffe5f4d609fe991d3b61ff7abf0dcf113c99282"]
+tokens=#1 ["0x9f4e0b54d87beb4c585d48a06d28a831756dae22"]
  # Account                                             EtherBalanceChange                          Token Name
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
- 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.152401216000000000           0.000000000000000000 Account #0 - Miner
- 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.100748256000000000           0.000000000000000000 Account #1 - Contract Owner
- 2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976       -0.051652960000000000       12000.000000000000000000 Account #2 - Alice
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.153086224000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.101215216000000000           0.000000000000000000 Account #1 - Contract Owner
+ 2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976       -0.051871008000000000       12000.000000000000000000 Account #2 - Alice
  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Bob
  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Carol
  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5 - Dave
@@ -111,31 +111,31 @@ tokens=#1 ["0x10794bcede3f0d265f965bf35018b8df414e4c46"]
  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
 10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #10
 11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11
-12 0x4ad3ae36d5ca6ede210385b8357a566a5ecea272        0.000000000000000000           0.000000000000000000 Members Library
-13 0x32a391d90fed661cc45de0590654bef58f9d6c29        0.000000000000000000           0.000000000000000000 Proposals Library
-14 0x938d22c583154e944cc0f6e83749261d88bf01f0        0.000000000000000000           0.000000000000000000 ClubFactory
-15 0x10794bcede3f0d265f965bf35018b8df414e4c46        0.000000000000000000           0.000000000000000000 Token 'SITS' 'Sit Minutes'
-16 0x87a288467d91f3817eb089982c5d9463a85b82d3        0.000000000000000000           0.000000000000000000 Club 'Babysitters Club'
+12 0xd8dc1b690f36cf38e8032d751343c9e4df9bdf87        0.000000000000000000           0.000000000000000000 Members Library
+13 0x611d3a5ac803dfb0acc68264d83538fef62fc5f8        0.000000000000000000           0.000000000000000000 Proposals Library
+14 0x24ad1371437980d21a8ebf2e46a824b860a6d47c        0.000000000000000000           0.000000000000000000 ClubFactory
+15 0x9f4e0b54d87beb4c585d48a06d28a831756dae22        0.000000000000000000           0.000000000000000000 Token 'SITS' 'Sit Minutes'
+16 0x5ffe5f4d609fe991d3b61ff7abf0dcf113c99282        0.000000000000000000           0.000000000000000000 Club 'Babysitters Club'
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
                                                                                 12000.000000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
 PASS Deploy Club Contract
-deployClubTx status=0x1 Success gas=4000000 gasUsed=3228310 costETH=0.05165296 costUSD=34.9024216016 @ ETH/USD=675.71 gasPrice=16 gwei block=1138 txIx=0 txId=0x5ab29ec6908391c7a66244e71256cdd6667f6bebaf2b339ebdda55bb1e662fbb @ 1526993976 Tue, 22 May 2018 12:59:36 UTC
-clubFactoryContractAddress=0x938d22c583154e944cc0f6e83749261d88bf01f0
+deployClubTx status=0x1 Success gas=4000000 gasUsed=3241938 costETH=0.051871008 costUSD=35.04975881568 @ ETH/USD=675.71 gasPrice=16 gwei block=22538 txIx=0 txId=0xf5185e237f85c337750783925b2f1426f00f74b02a5b9935bc67884897dbf8a2 @ 1527321364 Sat, 26 May 2018 07:56:04 UTC
+clubFactoryContractAddress=0x24ad1371437980d21a8ebf2e46a824b860a6d47c
 clubFactory.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 clubFactory.newOwner=0x0000000000000000000000000000000000000000
-ClubEthListing 0 #1138 {"clubAddress":"0x87a288467d91f3817eb089982c5d9463a85b82d3","clubEthName":"Babysitters Club","memberName":"0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","tokenAddress":"0x10794bcede3f0d265f965bf35018b8df414e4c46","tokenDecimals":"18","tokenName":"Sit Minutes","tokenSymbol":"SITS","tokensForNewMembers":"1.2e+22"}
-tokenContractAddress=0x10794bcede3f0d265f965bf35018b8df414e4c46
-token.owner=0x87a288467d91f3817eb089982c5d9463a85b82d3
+ClubEthListing 0 #22538 {"clubAddress":"0x5ffe5f4d609fe991d3b61ff7abf0dcf113c99282","clubEthName":"Babysitters Club","memberName":"0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","tokenAddress":"0x9f4e0b54d87beb4c585d48a06d28a831756dae22","tokenDecimals":"18","tokenName":"Sit Minutes","tokenSymbol":"SITS","tokensForNewMembers":"1.2e+22"}
+tokenContractAddress=0x9f4e0b54d87beb4c585d48a06d28a831756dae22
+token.owner=0x5ffe5f4d609fe991d3b61ff7abf0dcf113c99282
 token.newOwner=0x0000000000000000000000000000000000000000
 token.symbol=SITS
 token.name=Sit Minutes
 token.decimals=18
 token.totalSupply=12000
-Transfer 0 #1138: from=0x0000000000000000000000000000000000000000 to=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976 tokens=12000
-clubContractAddress=0x87a288467d91f3817eb089982c5d9463a85b82d3
-club.token=0x10794bcede3f0d265f965bf35018b8df414e4c46
+Transfer 0 #22538: from=0x0000000000000000000000000000000000000000 to=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976 tokens=12000
+clubContractAddress=0x5ffe5f4d609fe991d3b61ff7abf0dcf113c99282
+club.token=0x9f4e0b54d87beb4c585d48a06d28a831756dae22
 club.initialised=true
 club.numberOfMembers=1
 club.getMembers=["0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976"]
@@ -145,13 +145,13 @@ club.quorum=80%
 club.quorumDecayPerWeek=10%
 club.requiredMajority=70%
 club.getQuorum(now, * weeks)=0w=80% 1w=70% 2w=60% 3w=50% 4w=40% 5w=30% 6w=20% 7w=10% 8w=0% 9w=0% 
-MemberAdded 0 #1138 {"memberAddress":"0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","name":"Alice","totalAfter":"1"}
+MemberAdded 0 #22538 {"memberAddress":"0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","name":"Alice","totalAfter":"1"}
 
 ----- Set Member Name -----
 PASS Set Member Name
-setMemberNameTx status=0x1 Success gas=4000000 gasUsed=41028 costETH=0.000656448 costUSD=0.44356847808 @ ETH/USD=675.71 gasPrice=16 gwei block=1143 txIx=0 txId=0x8f0cdf21cc72f6c28b3b2b5e4978ded6db2f12b99c467efcbb6e2b57f866d4ea @ 1526993981 Tue, 22 May 2018 12:59:41 UTC
-clubContractAddress=0x87a288467d91f3817eb089982c5d9463a85b82d3
-club.token=0x10794bcede3f0d265f965bf35018b8df414e4c46
+setMemberNameTx status=0x1 Success gas=4000000 gasUsed=41028 costETH=0.000656448 costUSD=0.44356847808 @ ETH/USD=675.71 gasPrice=16 gwei block=22544 txIx=0 txId=0x483183f102bfb1098df84a31c3ee4a837c5e62c05df4fb48caa6d07eba1c7d75 @ 1527321370 Sat, 26 May 2018 07:56:10 UTC
+clubContractAddress=0x5ffe5f4d609fe991d3b61ff7abf0dcf113c99282
+club.token=0x9f4e0b54d87beb4c585d48a06d28a831756dae22
 club.initialised=true
 club.numberOfMembers=1
 club.getMembers=["0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976"]
@@ -161,14 +161,14 @@ club.quorum=80%
 club.quorumDecayPerWeek=10%
 club.requiredMajority=70%
 club.getQuorum(now, * weeks)=0w=80% 1w=70% 2w=60% 3w=50% 4w=40% 5w=30% 6w=20% 7w=10% 8w=0% 9w=0% 
-MemberNameUpdated 0 #1143 {"memberAddress":"0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","newName":"Alice in Blockchains","oldName":"Alice"}
+MemberNameUpdated 0 #22544 {"memberAddress":"0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","newName":"Alice in Blockchains","oldName":"Alice"}
 
 ----- Add Member Proposal #1 -----
  # Account                                             EtherBalanceChange                          Token Name
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
- 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.159551872000000000           0.000000000000000000 Account #0 - Miner
- 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.100748256000000000           0.000000000000000000 Account #1 - Contract Owner
- 2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976       -0.058803616000000000       12000.000000000000000000 Account #2 - Alice
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.160238992000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.101215216000000000           0.000000000000000000 Account #1 - Contract Owner
+ 2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976       -0.059023776000000000       12000.000000000000000000 Account #2 - Alice
  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000       12000.000000000000000000 Account #3 - Bob
  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Carol
  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5 - Dave
@@ -178,80 +178,57 @@ MemberNameUpdated 0 #1143 {"memberAddress":"0xa22ab8a9d641ce77e06d98b7d7065d324d
  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
 10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #10
 11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11
-12 0x4ad3ae36d5ca6ede210385b8357a566a5ecea272        0.000000000000000000           0.000000000000000000 Members Library
-13 0x32a391d90fed661cc45de0590654bef58f9d6c29        0.000000000000000000           0.000000000000000000 Proposals Library
-14 0x938d22c583154e944cc0f6e83749261d88bf01f0        0.000000000000000000           0.000000000000000000 ClubFactory
-15 0x10794bcede3f0d265f965bf35018b8df414e4c46        0.000000000000000000           0.000000000000000000 Token 'SITS' 'Sit Minutes'
-16 0x87a288467d91f3817eb089982c5d9463a85b82d3        0.000000000000000000           0.000000000000000000 Club 'Babysitters Club'
+12 0xd8dc1b690f36cf38e8032d751343c9e4df9bdf87        0.000000000000000000           0.000000000000000000 Members Library
+13 0x611d3a5ac803dfb0acc68264d83538fef62fc5f8        0.000000000000000000           0.000000000000000000 Proposals Library
+14 0x24ad1371437980d21a8ebf2e46a824b860a6d47c        0.000000000000000000           0.000000000000000000 ClubFactory
+15 0x9f4e0b54d87beb4c585d48a06d28a831756dae22        0.000000000000000000           0.000000000000000000 Token 'SITS' 'Sit Minutes'
+16 0x5ffe5f4d609fe991d3b61ff7abf0dcf113c99282        0.000000000000000000           0.000000000000000000 Club 'Babysitters Club'
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
                                                                                 24000.000000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
 PASS Add Member Proposal #1 - Alice addMemberProposal(ac3, 'Bob')
-addMemberProposal1_1Tx status=0x1 Success gas=500000 gasUsed=405888 costETH=0.006494208 costUSD=4.38820128768 @ ETH/USD=675.71 gasPrice=16 gwei block=1146 txIx=0 txId=0xb2e48bb1737f6213d191b912a6a399694e1e2db94e8bea15888f3e4efb4a0d6f @ 1526993984 Tue, 22 May 2018 12:59:44 UTC
-clubContractAddress=0x87a288467d91f3817eb089982c5d9463a85b82d3
-club.token=0x10794bcede3f0d265f965bf35018b8df414e4c46
+addMemberProposal1_1Tx status=0x1 Success gas=500000 gasUsed=406020 costETH=0.00649632 costUSD=4.3896283872 @ ETH/USD=675.71 gasPrice=16 gwei block=22547 txIx=0 txId=0x6d0c26eb0ac8dcc353c53f101e2975df4a8cbdd61656be46772c088986491d9a @ 1527321373 Sat, 26 May 2018 07:56:13 UTC
+clubContractAddress=0x5ffe5f4d609fe991d3b61ff7abf0dcf113c99282
+club.token=0x9f4e0b54d87beb4c585d48a06d28a831756dae22
 club.initialised=true
 club.numberOfMembers=2
 club.getMembers=["0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0"]
 club.member[0]=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976 [true, 0, 'Alice in Blockchains']
 club.member[1]=0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0 [true, 1, 'Bob']
 club.numberOfProposals=1
-club.getProposal[0]=["0","0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","Bob","0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0","0x0000000000000000000000000000000000000000","0","0","1","1526993984","1526993984"]
+club.getProposal[0]=["0","0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","Bob","0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0","0x0000000000000000000000000000000000000000","0","0","1","1527321373","1527321373"]
 club.quorum=80%
 club.quorumDecayPerWeek=10%
 club.requiredMajority=70%
 club.getQuorum(now, * weeks)=0w=80% 1w=70% 2w=60% 3w=50% 4w=40% 5w=30% 6w=20% 7w=10% 8w=0% 9w=0% 
-Voted 0 #1146 {"proposalId":"0","vote":true,"votedNo":"0","votedYes":"1","voter":"0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976"}
-VoteResult 0 #1146 {"membersLength":"1","pass":true,"proposalId":"0","quorumPercent":"80","requiredMajority":"70","votes":"1","yesPercent":"100"}
-MemberAdded 0 #1146 {"memberAddress":"0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0","name":"Bob","totalAfter":"2"}
-tokenContractAddress=0x10794bcede3f0d265f965bf35018b8df414e4c46
-token.owner=0x87a288467d91f3817eb089982c5d9463a85b82d3
+Voted 0 #22547 {"proposalId":"0","vote":true,"votedNo":"0","votedYes":"1","voter":"0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976"}
+VoteResult 0 #22547 {"membersLength":"1","pass":true,"proposalId":"0","quorumPercent":"80","requiredMajority":"70","votes":"1","yesPercent":"100"}
+MemberAdded 0 #22547 {"memberAddress":"0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0","name":"Bob","totalAfter":"2"}
+tokenContractAddress=0x9f4e0b54d87beb4c585d48a06d28a831756dae22
+token.owner=0x5ffe5f4d609fe991d3b61ff7abf0dcf113c99282
 token.newOwner=0x0000000000000000000000000000000000000000
 token.symbol=SITS
 token.name=Sit Minutes
 token.decimals=18
 token.totalSupply=24000
-Transfer 0 #1146: from=0x0000000000000000000000000000000000000000 to=0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0 tokens=12000
+Transfer 0 #22547: from=0x0000000000000000000000000000000000000000 to=0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0 tokens=12000
 
 ----- Add Member Proposal #2 -----
-Additional votes required = 999
-Additional votes required = 999
-Additional votes required = 0
-Additional votes required = 0
- # Account                                             EtherBalanceChange                          Token Name
--- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
- 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.168903904000000000           0.000000000000000000 Account #0 - Miner
- 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.100748256000000000           0.000000000000000000 Account #1 - Contract Owner
- 2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976       -0.066697024000000000       12000.000000000000000000 Account #2 - Alice
- 3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0       -0.001458624000000000       12000.000000000000000000 Account #3 - Bob
- 4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000       12000.000000000000000000 Account #4 - Carol
- 5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5 - Dave
- 6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
- 7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
- 8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
- 9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
-10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #10
-11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11
-12 0x4ad3ae36d5ca6ede210385b8357a566a5ecea272        0.000000000000000000           0.000000000000000000 Members Library
-13 0x32a391d90fed661cc45de0590654bef58f9d6c29        0.000000000000000000           0.000000000000000000 Proposals Library
-14 0x938d22c583154e944cc0f6e83749261d88bf01f0        0.000000000000000000           0.000000000000000000 ClubFactory
-15 0x10794bcede3f0d265f965bf35018b8df414e4c46        0.000000000000000000           0.000000000000000000 Token 'SITS' 'Sit Minutes'
-16 0x87a288467d91f3817eb089982c5d9463a85b82d3        0.000000000000000000           0.000000000000000000 Club 'Babysitters Club'
--- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-                                                                                36000.000000000000000000 Total Token Balances
--- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-
+Votes open = true | Quorum reached = false | Required majority = 70 | Yes percent = 100
+Votes open = true | Quorum reached = false | Required majority = 70 | Yes percent = 0
+Votes open = true | Quorum reached = true | Required majority = 70 | Yes percent = 50
+Votes open = false | Quorum reached = false | Required majority = 70 | Yes percent = 100
 PASS Add Member Proposal #2 - Alice addMemberProposal(ac4, 'Carol')
 PASS Add Member Proposal #2 - Alice voteNo(1)
 PASS Add Member Proposal #2 - Bob voteYes(1)
 PASS Add Member Proposal #2 - Alice voteYes(1)
-addMemberProposal2_1Tx status=0x1 Success gas=500000 gasUsed=212896 costETH=0.003406336 costUSD=2.30169529856 @ ETH/USD=675.71 gasPrice=16 gwei block=1152 txIx=0 txId=0xc11170b1c4d35f200a6b8a6760e4ad215be145d2fef3f6b1ea65792ab092afca @ 1526993990 Tue, 22 May 2018 12:59:50 UTC
-addMemberProposal2_2Tx status=0x1 Success gas=500000 gasUsed=58418 costETH=0.000934688 costUSD=0.63157802848 @ ETH/USD=675.71 gasPrice=16 gwei block=1154 txIx=0 txId=0xffaf0b2f760317299526b94b13238218ff0f661311e042981da69e6d670150e0 @ 1526993992 Tue, 22 May 2018 12:59:52 UTC
-addMemberProposal2_3Tx status=0x1 Success gas=500000 gasUsed=91164 costETH=0.001458624 costUSD=0.98560682304 @ ETH/USD=675.71 gasPrice=16 gwei block=1156 txIx=0 txId=0x9c40ba00ed1030e45fe0a5af69439cacc9b2c4bcfd8643510143545615698752 @ 1526993994 Tue, 22 May 2018 12:59:54 UTC
-addMemberProposal2_4Tx status=0x1 Success gas=500000 gasUsed=222024 costETH=0.003552384 costUSD=2.40038139264 @ ETH/USD=675.71 gasPrice=16 gwei block=1158 txIx=0 txId=0x7b1f13afa792484fe54c070b2e444c9ff08ee1a8b9af3d5c538df49d7839a019 @ 1526993996 Tue, 22 May 2018 12:59:56 UTC
-clubContractAddress=0x87a288467d91f3817eb089982c5d9463a85b82d3
-club.token=0x10794bcede3f0d265f965bf35018b8df414e4c46
+addMemberProposal2_1Tx status=0x1 Success gas=500000 gasUsed=212962 costETH=0.003407392 costUSD=2.30240884832 @ ETH/USD=675.71 gasPrice=16 gwei block=22552 txIx=0 txId=0xc44223494c9441b693e3714d3e31b3f966eb1c9c54d4aa593f84524811fa0d42 @ 1527321378 Sat, 26 May 2018 07:56:18 UTC
+addMemberProposal2_2Tx status=0x1 Success gas=500000 gasUsed=58484 costETH=0.000935744 costUSD=0.63229157824 @ ETH/USD=675.71 gasPrice=16 gwei block=22554 txIx=0 txId=0x5f6d9927edf04f03b070977c51fd99df62a0acf9394624721807290df9dd8b80 @ 1527321380 Sat, 26 May 2018 07:56:20 UTC
+addMemberProposal2_3Tx status=0x1 Success gas=500000 gasUsed=91208 costETH=0.001459328 costUSD=0.98608252288 @ ETH/USD=675.71 gasPrice=16 gwei block=22556 txIx=0 txId=0x79a910e6e5757688e79f1e6e5188874e7d08c8c9b804c799b5e48a92b20403d0 @ 1527321382 Sat, 26 May 2018 07:56:22 UTC
+addMemberProposal2_4Tx status=0x1 Success gas=500000 gasUsed=222134 costETH=0.003554144 costUSD=2.40157064224 @ ETH/USD=675.71 gasPrice=16 gwei block=22558 txIx=0 txId=0x4e912ee9e890f91aeea65b0fa49ba871328b4e90ed5fa498e1e712f4f367b649 @ 1527321384 Sat, 26 May 2018 07:56:24 UTC
+clubContractAddress=0x5ffe5f4d609fe991d3b61ff7abf0dcf113c99282
+club.token=0x9f4e0b54d87beb4c585d48a06d28a831756dae22
 club.initialised=true
 club.numberOfMembers=3
 club.getMembers=["0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0","0xa44a08d3f6933c69212114bb66e2df1813651844"]
@@ -259,25 +236,25 @@ club.member[0]=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976 [true, 0, 'Alice in Bl
 club.member[1]=0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0 [true, 1, 'Bob']
 club.member[2]=0xa44a08d3f6933c69212114bb66e2df1813651844 [true, 2, 'Carol']
 club.numberOfProposals=2
-club.getProposal[0]=["0","0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","Bob","0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0","0x0000000000000000000000000000000000000000","0","0","1","1526993984","1526993984"]
-club.getProposal[1]=["0","0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","Carol","0xa44a08d3f6933c69212114bb66e2df1813651844","0x0000000000000000000000000000000000000000","0","0","2","1526993990","1526993996"]
+club.getProposal[0]=["0","0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","Bob","0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0","0x0000000000000000000000000000000000000000","0","0","1","1527321373","1527321373"]
+club.getProposal[1]=["0","0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976","Carol","0xa44a08d3f6933c69212114bb66e2df1813651844","0x0000000000000000000000000000000000000000","0","0","2","1527321378","1527321384"]
 club.quorum=80%
 club.quorumDecayPerWeek=10%
 club.requiredMajority=70%
 club.getQuorum(now, * weeks)=0w=80% 1w=70% 2w=60% 3w=50% 4w=40% 5w=30% 6w=20% 7w=10% 8w=0% 9w=0% 
-Voted 0 #1152 {"proposalId":"1","vote":true,"votedNo":"0","votedYes":"1","voter":"0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976"}
-Voted 1 #1154 {"proposalId":"1","vote":false,"votedNo":"1","votedYes":"0","voter":"0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976"}
-Voted 2 #1156 {"proposalId":"1","vote":true,"votedNo":"1","votedYes":"1","voter":"0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0"}
-Voted 3 #1158 {"proposalId":"1","vote":true,"votedNo":"0","votedYes":"2","voter":"0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976"}
-VoteResult 0 #1156 {"membersLength":"2","pass":false,"proposalId":"1","quorumPercent":"80","requiredMajority":"70","votes":"2","yesPercent":"50"}
-VoteResult 1 #1158 {"membersLength":"2","pass":true,"proposalId":"1","quorumPercent":"80","requiredMajority":"70","votes":"2","yesPercent":"100"}
-MemberAdded 0 #1158 {"memberAddress":"0xa44a08d3f6933c69212114bb66e2df1813651844","name":"Carol","totalAfter":"3"}
-tokenContractAddress=0x10794bcede3f0d265f965bf35018b8df414e4c46
-token.owner=0x87a288467d91f3817eb089982c5d9463a85b82d3
+Voted 0 #22552 {"proposalId":"1","vote":true,"votedNo":"0","votedYes":"1","voter":"0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976"}
+Voted 1 #22554 {"proposalId":"1","vote":false,"votedNo":"1","votedYes":"0","voter":"0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976"}
+Voted 2 #22556 {"proposalId":"1","vote":true,"votedNo":"1","votedYes":"1","voter":"0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0"}
+Voted 3 #22558 {"proposalId":"1","vote":true,"votedNo":"0","votedYes":"2","voter":"0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976"}
+VoteResult 0 #22556 {"membersLength":"2","pass":false,"proposalId":"1","quorumPercent":"80","requiredMajority":"70","votes":"2","yesPercent":"50"}
+VoteResult 1 #22558 {"membersLength":"2","pass":true,"proposalId":"1","quorumPercent":"80","requiredMajority":"70","votes":"2","yesPercent":"100"}
+MemberAdded 0 #22558 {"memberAddress":"0xa44a08d3f6933c69212114bb66e2df1813651844","name":"Carol","totalAfter":"3"}
+tokenContractAddress=0x9f4e0b54d87beb4c585d48a06d28a831756dae22
+token.owner=0x5ffe5f4d609fe991d3b61ff7abf0dcf113c99282
 token.newOwner=0x0000000000000000000000000000000000000000
 token.symbol=SITS
 token.name=Sit Minutes
 token.decimals=18
 token.totalSupply=36000
-Transfer 0 #1158: from=0x0000000000000000000000000000000000000000 to=0xa44a08d3f6933c69212114bb66e2df1813651844 tokens=12000
+Transfer 0 #22558: from=0x0000000000000000000000000000000000000000 to=0xa44a08d3f6933c69212114bb66e2df1813651844 tokens=12000
 

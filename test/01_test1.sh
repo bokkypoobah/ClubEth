@@ -258,6 +258,9 @@ printTokenContractDetails();
 console.log("RESULT: ");
 
 
+
+
+
 // -----------------------------------------------------------------------------
 var addMemberProposal2_Message = "Add Member Proposal #2";
 // -----------------------------------------------------------------------------
@@ -265,21 +268,24 @@ console.log("RESULT: ----- " + addMemberProposal2_Message + " -----");
 var addMemberProposal2_1Tx = club.proposeAddMember("Carol", carolAccount, {from: aliceAccount, gas: 500000, gasPrice: defaultGasPrice});
 while (txpool.status.pending > 0) {
 }
-console.log("RESULT: Additional votes required = " + club.getAdditionalVotesRequired(1));
+
+getVotingStatus();
 var addMemberProposal2_2Tx = club.voteNo(1, {from: aliceAccount, gas: 500000, gasPrice: defaultGasPrice});
 while (txpool.status.pending > 0) {
 }
-console.log("RESULT: Additional votes required = " + club.getAdditionalVotesRequired(1));
+getVotingStatus();
+
 var addMemberProposal2_3Tx = club.voteYes(1, {from: bobAccount, gas: 500000, gasPrice: defaultGasPrice});
 while (txpool.status.pending > 0) {
 }
-console.log("RESULT: Additional votes required = " + club.getAdditionalVotesRequired(1));
+getVotingStatus();
+
 var addMemberProposal2_4Tx = club.voteYes(1, {from: aliceAccount, gas: 500000, gasPrice: defaultGasPrice});
 while (txpool.status.pending > 0) {
 }
-console.log("RESULT: Additional votes required = " + club.getAdditionalVotesRequired(1));
+getVotingStatus();
 
-printBalances();
+// printBalances();
 failIfTxStatusError(addMemberProposal2_1Tx, addMemberProposal2_Message + " - Alice addMemberProposal(ac4, 'Carol')");
 failIfTxStatusError(addMemberProposal2_2Tx, addMemberProposal2_Message + " - Alice voteNo(1)");
 failIfTxStatusError(addMemberProposal2_3Tx, addMemberProposal2_Message + " - Bob voteYes(1)");
