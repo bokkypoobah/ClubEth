@@ -3,7 +3,8 @@ pragma solidity ^0.4.23;
 // ----------------------------------------------------------------------------
 // ClubEth.App Project
 //
-// https://github.com/bokkypoobah/ClubEth
+// URL: ClubEth.App
+// GitHub: https://github.com/bokkypoobah/ClubEth
 //
 // Enjoy.
 //
@@ -30,7 +31,7 @@ contract ERC20Interface {
 
 
 // ----------------------------------------------------------------------------
-// ClubToken Interface = ERC20 + symbol + name + decimals + mint + burn
+// ClubEthToken Interface = ERC20 + symbol + name + decimals + mint + burn
 // + approveAndCall
 // ----------------------------------------------------------------------------
 contract ClubEthTokenInterface is ERC20Interface {
@@ -123,7 +124,6 @@ contract ClubEthToken is ClubEthTokenInterface, Owned {
     mapping(address => uint) balances;
     mapping(address => mapping(address => uint)) allowed;
 
-
     constructor(string symbol, string name, uint8 decimals) public {
         _symbol = symbol;
         _name = name;
@@ -182,7 +182,7 @@ contract ClubEthToken is ClubEthTokenInterface, Owned {
             tokens = balances[tokenOwner];
         }
         _totalSupply = _totalSupply.sub(tokens);
-        balances[tokenOwner] = 0;
+        balances[tokenOwner] = balances[tokenOwner].sub(tokens);
         emit Transfer(tokenOwner, address(0), tokens);
         return true;
     }
@@ -423,6 +423,18 @@ library Proposals {
             emit VoteResult(proposalId, proposal.pass, voteCount, quorum, membersLength, yesPercent, requiredMajority);
         }
     }
+    // TODO - Issues:
+    // 1. quorumReached is not accurate after the vote passes and accepts a new member
+    //    Unless storing it as a storage variable, we can't accurately track the status before the proposal is executed
+    // 2. To calculate required additional votes we need to apply a ceiling function which consumes gas
+    function getVotingStatus(Data storage self, uint proposalId, uint membersLength, uint quorum, uint requiredMajority) public view returns (bool isOpen, bool quorumReached, uint _requiredMajority, uint yesPercent) {
+        Proposal storage proposal = self.proposals[proposalId];
+        isOpen = (proposal.closed == 0);
+        uint voteCount = proposal.votedYes + proposal.votedNo;
+        quorumReached = (voteCount * 100 >= quorum * membersLength);
+        yesPercent = proposal.votedYes * 100 / voteCount;
+        _requiredMajority = requiredMajority;
+    }
     // function get(Data storage self, uint proposalId) public view returns (Proposal proposal) {
     //    return self.proposals[proposalId];
     // }
@@ -480,7 +492,6 @@ contract ClubEth {
     uint public quorumDecayPerWeek = 10;
     uint public requiredMajority = 70;
 
-
     // Must be copied here to be added to the ABI
     event MemberAdded(address indexed memberAddress, string name, uint totalAfter);
     event MemberRemoved(address indexed memberAddress, string name, uint totalAfter);
@@ -493,7 +504,6 @@ contract ClubEth {
     event TokensForNewMembersUpdated(uint oldTokens, uint newTokens);
     event EtherDeposited(address indexed sender, uint amount);
     event EtherTransferred(uint indexed proposalId, address indexed sender, address indexed recipient, uint amount);
-
 
     modifier onlyMember {
         require(members.isMember(msg.sender));
@@ -564,6 +574,9 @@ contract ClubEth {
             }
             proposals.close(proposalId);
         }
+    }
+    function getVotingStatus(uint proposalId) public view returns (bool, bool, uint, uint) {
+        return proposals.getVotingStatus(proposalId, members.length(), getQuorum(proposals.getInitiated(proposalId), now), requiredMajority);
     }
 
     /*

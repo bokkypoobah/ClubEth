@@ -77,15 +77,15 @@ var proposalsLibBin = "0x" + clubFactoryOutput.contracts["$CLUBFACTORYSOL:Propos
 var clubAbi = JSON.parse(clubFactoryOutput.contracts["$CLUBFACTORYSOL:ClubEth"].abi);
 var clubBin = "0x" + clubFactoryOutput.contracts["$CLUBFACTORYSOL:ClubEth"].bin;
 
-// console.log("DATA: clubFactoryAbi=" + JSON.stringify(clubFactoryAbi));
-// console.log("DATA: clubFactoryBin=" + JSON.stringify(clubFactoryBin));
-// console.log("DATA: tokenAbi=" + JSON.stringify(tokenAbi));
-// console.log("DATA: membersLibAbi=" + JSON.stringify(membersLibAbi));
-// console.log("DATA: membersLibBin=" + JSON.stringify(membersLibBin));
-// console.log("DATA: proposalsLibAbi=" + JSON.stringify(proposalsLibAbi));
-// console.log("DATA: proposalsLibBin=" + JSON.stringify(proposalsLibBin));
-// console.log("DATA: clubAbi=" + JSON.stringify(clubAbi));
-// console.log("DATA: clubBin=" + JSON.stringify(clubBin));
+console.log("DATA: clubFactoryAbi=" + JSON.stringify(clubFactoryAbi));
+console.log("DATA: clubFactoryBin=" + JSON.stringify(clubFactoryBin));
+console.log("DATA: tokenAbi=" + JSON.stringify(tokenAbi));
+console.log("DATA: membersLibAbi=" + JSON.stringify(membersLibAbi));
+console.log("DATA: membersLibBin=" + JSON.stringify(membersLibBin));
+console.log("DATA: proposalsLibAbi=" + JSON.stringify(proposalsLibAbi));
+console.log("DATA: proposalsLibBin=" + JSON.stringify(proposalsLibBin));
+console.log("DATA: clubAbi=" + JSON.stringify(clubAbi));
+console.log("DATA: clubBin=" + JSON.stringify(clubBin));
 
 
 unlockAccounts("$PASSWORD");
@@ -157,9 +157,9 @@ console.log("RESULT: ");
 var deployClubFactoryMessage = "Deploy ClubFactory";
 // -----------------------------------------------------------------------------
 console.log("RESULT: ----- " + deployClubFactoryMessage + " -----");
-// console.log("RESULT: clubFactoryBin='" + clubFactoryBin + "'");
+console.log("RESULT: clubFactoryBin='" + clubFactoryBin + "'");
 var newClubFactoryBin = clubFactoryBin.replace(/__ClubEthFactory\.sol\:Members____________/g, membersLibAddress.substring(2, 42)).replace(/__ClubEthFactory\.sol\:Proposals__________/g, proposalsLibAddress.substring(2, 42));
-// console.log("RESULT: newClubFactoryBin='" + newClubFactoryBin + "'");
+console.log("RESULT: newClubFactoryBin='" + newClubFactoryBin + "'");
 var clubFactoryContract = web3.eth.contract(clubFactoryAbi);
 // console.log(JSON.stringify(clubFactoryAbi));
 // console.log(newClubFactoryBin);

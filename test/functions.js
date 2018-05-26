@@ -366,6 +366,8 @@ function printClubContractDetails() {
       console.log("RESULT: NewProposal " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
       var proposal = contract.getProposal(result.args.proposalId);
       console.log("RESULT: - proposal=" + JSON.stringify(proposal));
+      var votingStatus = contract.getVotingStatus(result.args.proposalId);
+      console.log("RESULT: - votingStatus: open=" + votingStatus[0] + " quorumReached=" + votingStatus[1] + " requiredMajority=" + votingStatus[2] + " yesPercent=" + votingStatus[3]);
     });
     newProposalEvents.stopWatching();
 
@@ -373,6 +375,8 @@ function printClubContractDetails() {
     i = 0;
     votedEvents.watch(function (error, result) {
       console.log("RESULT: Voted " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
+      var votingStatus = contract.getVotingStatus(result.args.proposalId);
+      console.log("RESULT: - votingStatus: open=" + votingStatus[0] + " quorumReached=" + votingStatus[1] + " requiredMajority=" + votingStatus[2] + " yesPercent=" + votingStatus[3]);
     });
     votedEvents.stopWatching();
 
@@ -380,6 +384,8 @@ function printClubContractDetails() {
     i = 0;
     voteResultEvents.watch(function (error, result) {
       console.log("RESULT: VoteResult " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
+      var votingStatus = contract.getVotingStatus(result.args.proposalId);
+      console.log("RESULT: - votingStatus: open=" + votingStatus[0] + " quorumReached=" + votingStatus[1] + " requiredMajority=" + votingStatus[2] + " yesPercent=" + votingStatus[3]);
     });
     voteResultEvents.stopWatching();
 
