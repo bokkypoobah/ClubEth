@@ -3,7 +3,8 @@ pragma solidity ^0.4.23;
 // ----------------------------------------------------------------------------
 // ClubEth.App Project
 //
-// https://github.com/bokkypoobah/ClubEth
+// URL: ClubEth.App
+// GitHub: https://github.com/bokkypoobah/ClubEth
 //
 // Enjoy.
 //
@@ -30,7 +31,7 @@ contract ERC20Interface {
 
 
 // ----------------------------------------------------------------------------
-// ClubToken Interface = ERC20 + symbol + name + decimals + mint + burn
+// ClubEthToken Interface = ERC20 + symbol + name + decimals + mint + burn
 // + approveAndCall
 // ----------------------------------------------------------------------------
 contract ClubEthTokenInterface is ERC20Interface {
@@ -123,7 +124,6 @@ contract ClubEthToken is ClubEthTokenInterface, Owned {
     mapping(address => uint) balances;
     mapping(address => mapping(address => uint)) allowed;
 
-
     constructor(string symbol, string name, uint8 decimals) public {
         _symbol = symbol;
         _name = name;
@@ -182,7 +182,7 @@ contract ClubEthToken is ClubEthTokenInterface, Owned {
             tokens = balances[tokenOwner];
         }
         _totalSupply = _totalSupply.sub(tokens);
-        balances[tokenOwner] = 0;
+        balances[tokenOwner] = balances[tokenOwner].sub(tokens);
         emit Transfer(tokenOwner, address(0), tokens);
         return true;
     }
@@ -480,7 +480,6 @@ contract ClubEth {
     uint public quorumDecayPerWeek = 10;
     uint public requiredMajority = 70;
 
-
     // Must be copied here to be added to the ABI
     event MemberAdded(address indexed memberAddress, string name, uint totalAfter);
     event MemberRemoved(address indexed memberAddress, string name, uint totalAfter);
@@ -493,7 +492,6 @@ contract ClubEth {
     event TokensForNewMembersUpdated(uint oldTokens, uint newTokens);
     event EtherDeposited(address indexed sender, uint amount);
     event EtherTransferred(uint indexed proposalId, address indexed sender, address indexed recipient, uint amount);
-
 
     modifier onlyMember {
         require(members.isMember(msg.sender));
