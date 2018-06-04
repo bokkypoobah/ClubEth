@@ -1,4 +1,4 @@
-pragma solidity ^0.4.23;
+pragma solidity ^0.4.24;
 
 // ----------------------------------------------------------------------------
 // ClubEth.App Project
@@ -214,20 +214,20 @@ library Members {
     event MemberRemoved(address indexed memberAddress, string name, uint totalAfter);
     event MemberNameUpdated(address indexed memberAddress, string oldName, string newName);
 
-    function init(Data storage self) public {
+    function init(Data storage self) internal {
         require(!self.initialised);
         self.initialised = true;
     }
-    function isMember(Data storage self, address memberAddress) public view returns (bool) {
+    function isMember(Data storage self, address memberAddress) internal view returns (bool) {
         return self.entries[memberAddress].exists;
     }
-    function add(Data storage self, address memberAddress, string memberName) public {
+    function add(Data storage self, address memberAddress, string memberName) internal {
         require(!self.entries[memberAddress].exists);
         self.index.push(memberAddress);
         self.entries[memberAddress] = Member(true, self.index.length - 1, memberName);
         emit MemberAdded(memberAddress, memberName, self.index.length);
     }
-    function remove(Data storage self, address memberAddress) public {
+    function remove(Data storage self, address memberAddress) internal {
         require(self.entries[memberAddress].exists);
         uint removeIndex = self.entries[memberAddress].index;
         emit MemberRemoved(memberAddress, self.entries[memberAddress].name, self.index.length - 1);
@@ -240,13 +240,13 @@ library Members {
             self.index.length--;
         }
     }
-    function setName(Data storage self, address memberAddress, string memberName) public {
+    function setName(Data storage self, address memberAddress, string memberName) internal {
         Member storage member = self.entries[memberAddress];
         require(member.exists);
         emit MemberNameUpdated(memberAddress, member.name, memberName);
         member.name = memberName;
     }
-    function length(Data storage self) public view returns (uint) {
+    function length(Data storage self) internal view returns (uint) {
         return self.index.length;
     }
 }
@@ -296,7 +296,7 @@ library Proposals {
     event Voted(uint indexed proposalId, address indexed voter, bool vote, uint votedYes, uint votedNo);
     event VoteResult(uint indexed proposalId, bool pass, uint votes, uint quorumPercent, uint membersLength, uint yesPercent, uint requiredMajority);
 
-    function proposeAddMember(Data storage self, string memberName, address memberAddress) public returns (uint proposalId) {
+    function proposeAddMember(Data storage self, string memberName, address memberAddress) internal returns (uint proposalId) {
         Proposal memory proposal = Proposal({
             proposalType: ProposalType.AddMember,
             proposer: msg.sender,
@@ -314,7 +314,7 @@ library Proposals {
         proposalId = self.proposals.length - 1;
         emit NewProposal(proposalId, proposal.proposalType, msg.sender);
     }
-    function proposeRemoveMember(Data storage self, string description, address memberAddress) public returns (uint proposalId) {
+    function proposeRemoveMember(Data storage self, string description, address memberAddress) internal returns (uint proposalId) {
         Proposal memory proposal = Proposal({
             proposalType: ProposalType.RemoveMember,
             proposer: msg.sender,
@@ -332,7 +332,7 @@ library Proposals {
         proposalId = self.proposals.length - 1;
         emit NewProposal(proposalId, proposal.proposalType, msg.sender);
     }
-    function proposeMintTokens(Data storage self, string description, address tokenOwner, uint amount) public returns (uint proposalId) {
+    function proposeMintTokens(Data storage self, string description, address tokenOwner, uint amount) internal returns (uint proposalId) {
         Proposal memory proposal = Proposal({
             proposalType: ProposalType.MintTokens,
             proposer: msg.sender,
@@ -350,7 +350,7 @@ library Proposals {
         proposalId = self.proposals.length - 1;
         emit NewProposal(proposalId, proposal.proposalType, msg.sender);
     }
-    function proposeBurnTokens(Data storage self, string description, address tokenOwner, uint amount) public returns (uint proposalId) {
+    function proposeBurnTokens(Data storage self, string description, address tokenOwner, uint amount) internal returns (uint proposalId) {
         Proposal memory proposal = Proposal({
             proposalType: ProposalType.BurnTokens,
             proposer: msg.sender,
@@ -368,7 +368,7 @@ library Proposals {
         proposalId = self.proposals.length - 1;
         emit NewProposal(proposalId, proposal.proposalType, msg.sender);
     }
-    function proposeEtherTransfer(Data storage self, string description, address recipient, uint amount) public returns (uint proposalId) {
+    function proposeEtherTransfer(Data storage self, string description, address recipient, uint amount) internal returns (uint proposalId) {
         require(address(this).balance >= amount);
         Proposal memory proposal = Proposal({
             proposalType: ProposalType.EtherTransfer,
@@ -387,7 +387,7 @@ library Proposals {
         proposalId = self.proposals.length - 1;
         emit NewProposal(proposalId, proposal.proposalType, msg.sender);
     }
-    function vote(Data storage self, uint proposalId, bool yesNo, uint membersLength, uint quorum, uint requiredMajority) public {
+    function vote(Data storage self, uint proposalId, bool yesNo, uint membersLength, uint quorum, uint requiredMajority) internal {
         Proposal storage proposal = self.proposals[proposalId];
         require(proposal.closed == 0);
         // First vote
@@ -427,7 +427,7 @@ library Proposals {
     // 1. quorumReached is not accurate after the vote passes and accepts a new member
     //    Unless storing it as a storage variable, we can't accurately track the status before the proposal is executed
     // 2. To calculate required additional votes we need to apply a ceiling function which consumes gas
-    function getVotingStatus(Data storage self, uint proposalId, uint membersLength, uint quorum, uint requiredMajority) public view returns (bool isOpen, bool quorumReached, uint _requiredMajority, uint yesPercent) {
+    function getVotingStatus(Data storage self, uint proposalId, uint membersLength, uint quorum, uint requiredMajority) internal view returns (bool isOpen, bool quorumReached, uint _requiredMajority, uint yesPercent) {
         Proposal storage proposal = self.proposals[proposalId];
         isOpen = (proposal.closed == 0);
         uint voteCount = proposal.votedYes + proposal.votedNo;
@@ -438,34 +438,34 @@ library Proposals {
     // function get(Data storage self, uint proposalId) public view returns (Proposal proposal) {
     //    return self.proposals[proposalId];
     // }
-    function getProposalType(Data storage self, uint proposalId) public view returns (ProposalType) {
+    function getProposalType(Data storage self, uint proposalId) internal view returns (ProposalType) {
         return self.proposals[proposalId].proposalType;
     }
-    function getDescription(Data storage self, uint proposalId) public view returns (string) {
+    function getDescription(Data storage self, uint proposalId) internal view returns (string) {
         return self.proposals[proposalId].description;
     }
-    function getAddress1(Data storage self, uint proposalId) public view returns (address) {
+    function getAddress1(Data storage self, uint proposalId) internal view returns (address) {
         return self.proposals[proposalId].address1;
     }
-    function getAmount(Data storage self, uint proposalId) public view returns (uint) {
+    function getAmount(Data storage self, uint proposalId) internal view returns (uint) {
         return self.proposals[proposalId].amount;
     }
-    function getInitiated(Data storage self, uint proposalId) public view returns (uint) {
+    function getInitiated(Data storage self, uint proposalId) internal view returns (uint) {
         return self.proposals[proposalId].initiated;
     }
-    function isClosed(Data storage self, uint proposalId) public view returns (bool) {
+    function isClosed(Data storage self, uint proposalId) internal view returns (bool) {
         self.proposals[proposalId].closed;
     }
-    function pass(Data storage self, uint proposalId) public view returns (bool) {
+    function pass(Data storage self, uint proposalId) internal view returns (bool) {
         return self.proposals[proposalId].pass;
     }
-    function toExecute(Data storage self, uint proposalId) public view returns (bool) {
+    function toExecute(Data storage self, uint proposalId) internal view returns (bool) {
         return self.proposals[proposalId].pass && self.proposals[proposalId].closed == 0;
     }
-    function close(Data storage self, uint proposalId) public {
+    function close(Data storage self, uint proposalId) internal {
         self.proposals[proposalId].closed = now;
     }
-    function length(Data storage self) public view returns (uint) {
+    function length(Data storage self) internal view returns (uint) {
         return self.proposals.length;
     }
 }
